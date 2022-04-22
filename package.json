@@ -1,0 +1,29 @@
+{
+  "name": "@cufoon/node-red-ui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.13.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-react": "^7.29.4",
+    "prettier": "^2.6.2",
+    "snowpack": "^3.8.8"
+  },
+  "dependencies": {
+    "@arco-design/web-react": "^2.32.0",
+    "fs-extra": "^10.1.0"
+  },
+  "node-red": {
+    "nodes": {
+      "sample": "src/node/sample/sample.js",
+      "new-site": "src/node/new-site/new-site.js",
+      "ui-text": "src/node/ui-text/ui-text.js"
+    }
+  }
+}
