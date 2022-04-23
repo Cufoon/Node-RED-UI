@@ -5,15 +5,23 @@ module.exports = {
     es2021: true,
     node: true
   },
-  extends: ['eslint:recommended', 'plugin:react/recommended', 'prettier'],
+  parser: '@typescript-eslint/parser',
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'prettier'
+  ],
   parserOptions: {
     ecmaFeatures: {
       jsx: true
     },
     ecmaVersion: 'latest'
   },
-  plugins: ['react'],
-  rules: {}
+  plugins: ['react', '@typescript-eslint'],
+  rules: {
+    'no-this-alias': false
+  }
   // globals: {
   //   RED: 'readonly'
   // }

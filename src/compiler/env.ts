@@ -1,6 +1,6 @@
-const path = require('path');
+import path from 'node:path';
 
-module.exports = {
+export default {
   root: path.resolve(__dirname, '..', 'example'),
   mount: {
     public: '/',
