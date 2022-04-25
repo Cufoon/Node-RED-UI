@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateRoute = void 0;
-const check_1 = require("../util/check");
+const check_1 = require("$util/check");
 const generateStart = (data) => {
     return `
   <Route path='${data.path}' element={<${data.element} />}>

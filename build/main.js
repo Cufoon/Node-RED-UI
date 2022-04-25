@@ -5,9 +5,9 @@ const node_child_process_1 = tslib_1.__importDefault(require("node:child_process
 const node_path_1 = tslib_1.__importDefault(require("node:path"));
 const fs_extra_1 = tslib_1.__importDefault(require("fs-extra"));
 const snowpack = tslib_1.__importStar(require("snowpack"));
-const snowpack_1 = require("./config/snowpack");
-const _convert_1 = require("./convert");
-const _scaffold_1 = require("./scaffold");
+const snowpack_1 = require("$config/snowpack");
+const _convert_1 = require("$convert");
+const _scaffold_1 = require("$scaffold");
 console.log((0, snowpack_1.generateSnowpackConfig)());
 const testProjectPath = node_path_1.default.resolve(__dirname, '../test');
 const testProjectSourcePath = node_path_1.default.resolve(testProjectPath, 'src');

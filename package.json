@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "a node-red ui framework",
   "scripts": {
-    "build": "tsc && tsc-alias",
-    "dev": "concurrently --kill-others \"tsc -w\" \"tsc-alias -w\"",
+    "build": "node ./script/clean.js && tsc && tsc-alias",
+    "dev": "node ./script/clean.js && concurrently --kill-others \"tsc -w\" \"tsc-alias -w\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Cufoon",
