@@ -1,12 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateFile = void 0;
-const app_1 = require("$template/app");
-const body_1 = require("$template/body");
-const lib_1 = require("$template/lib");
-const route_1 = require("$template/route");
-const store_1 = require("$template/store");
-const file_1 = require("$util/file");
+const app_1 = require("./template/app");
+const body_1 = require("./template/body");
+const lib_1 = require("./template/lib");
+const route_1 = require("./template/route");
+const store_1 = require("./template/store");
+const file_1 = require("./util/file");
 const generateFile = () => {
     try {
         const importation = (0, lib_1.generateImportation)();

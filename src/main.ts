@@ -1,10 +1,11 @@
 import childProcess from 'node:child_process';
 import path from 'node:path';
 import fs from 'fs-extra';
-import * as snowpack from 'snowpack';
+// import * as snowpack from 'snowpack';
 import { generateSnowpackConfig } from '$config/snowpack';
 import { generateFile } from '$convert';
 import { createProject } from '$scaffold';
+import dayjs from 'dayjs';
 
 console.log(generateSnowpackConfig());
 
@@ -29,11 +30,12 @@ const compile = async () => {
   if (!generateFile()) {
     return;
   }
-  const config = snowpack.createConfiguration({ ...generateSnowpackConfig() });
-  // const result = await snowpack.build({ config });
-  const server = await snowpack.startServer({ config });
-  // console.log(result);
-  console.log(server);
+  console.log(dayjs().format('YYYY-MM-DD HH:mm:ss'), 'build success');
+  // const config = snowpack.createConfiguration({ ...generateSnowpackConfig() });
+  // // const result = await snowpack.build({ config });
+  // const server = await snowpack.startServer({ config });
+  // // console.log(result);
+  // console.log(server);
 };
 
 compile();
