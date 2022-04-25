@@ -1,22 +1,26 @@
 {
   "name": "@cufoon/node-red-ui",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "a node-red ui framework",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && tsc-alias",
+    "dev": "concurrently --kill-others \"tsc -w\" \"tsc-alias -w\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Cufoon",
   "license": "MIT",
   "devDependencies": {
+    "@types/fs-extra": "^9.0.13",
     "@typescript-eslint/eslint-plugin": "^5.20.0",
     "@typescript-eslint/parser": "^5.20.0",
+    "concurrently": "^7.1.0",
     "eslint": "^8.13.0",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-typescript": "^2.7.1",
     "eslint-plugin-react": "^7.29.4",
     "prettier": "^2.6.2",
     "snowpack": "^3.8.8",
+    "tsc-alias": "^1.6.7",
     "typescript": "^4.6.3"
   },
   "dependencies": {
@@ -25,9 +29,9 @@
   },
   "node-red": {
     "nodes": {
-      "sample": "src/node/sample/sample.js",
-      "new-site": "src/node/new-site/new-site.js",
-      "ui-text": "src/node/ui-text/ui-text.js"
+      "sample": "nodes/sample/sample.js",
+      "new-site": "nodes/new-site/new-site.js",
+      "ui-text": "nodes/ui-text/ui-text.js"
     }
   }
 }

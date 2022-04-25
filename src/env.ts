@@ -1,7 +1,7 @@
 import path from 'node:path';
 
 export default {
-  root: path.resolve(__dirname, '..', 'example'),
+  root: path.resolve(__dirname, '..', 'test'),
   mount: {
     public: '/',
     src: '/dist'

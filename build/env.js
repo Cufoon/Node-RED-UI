@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
 const node_path_1 = tslib_1.__importDefault(require("node:path"));
 exports.default = {
-    root: node_path_1.default.resolve(__dirname, '..', 'example'),
+    root: node_path_1.default.resolve(__dirname, '..', 'test'),
     mount: {
         public: '/',
         src: '/dist'
