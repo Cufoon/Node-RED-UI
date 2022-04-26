@@ -1,9 +1,9 @@
-import type { Element } from '$interface/element';
+import type { ElementBuildData } from '$interface/element';
 import { isArray } from '$util/check';
 import generator from '$template/generate';
 
 export type ElementMap = Map<string, string[]>;
-export type ElementItemMap = Map<string, Element>;
+export type ElementItemMap = Map<string, ElementBuildData>;
 
 const scan = (
   append: (v: string) => void,
@@ -22,19 +22,26 @@ const scan = (
           const content = scan(append, relation, data, children[i]);
           childStr += content;
         }
-        const [c, n] = generator.button({
+        const [c, n] = generator[item.name]({
           option: { hasChildren: true },
           element: item,
           children: childStr
         });
-        append(c);
-        return `<${n} />`;
+        if (n !== null) {
+          append(c);
+          return `<${n} />`;
+        }
+        return c;
       }
     } else {
-      const [content] = generator.button({
+      const [content, n] = generator[item.name]({
         option: { hasChildren: false },
         element: item
       });
+      if (n !== null) {
+        append(content);
+        return `<${n} />`;
+      }
       return content;
     }
   }

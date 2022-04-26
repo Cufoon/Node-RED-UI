@@ -3,11 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateImportation = void 0;
 const generateImportation = () => {
     return `
-  import React, { createContext, useReducer } from 'react';
+  import React, { createContext, useReducer, useContext, useEffect } from 'react';
   import { createRoot } from 'react-dom/client';
   import { BrowserRouter, Route, Routes, Outlet } from 'react-router-dom';
-  import { Card } from '@arco-design/web-react';
-  // import "@arco-design/web-react/dist/css/arco.css";
+  import { Card, Layout } from '@arco-design/web-react';
 
   const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)");
 
@@ -19,9 +18,19 @@ const generateImportation = () => {
     }
   });
 
+  const PlainObject = {};
+  if (Object.hasOwn !== undefined && Object.hasOwn !== null) {
+    PlainObject.hasOwnProperty = function(property){
+      return Object.hasOwn(this, property);
+    }
+  }
+
   const Utils = {
     isFunction: (data) => {
-      return {}.toString.call(data) === '[object Function]';
+      return PlainObject.toString.call(data) === '[object Function]';
+    },
+    hasOwn: (data, property) => {
+      return PlainObject.hasOwnProperty.call(data, property);
     }
   };
 

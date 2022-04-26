@@ -28,8 +28,24 @@ const reducer = (state, action) => {
     action.process !== undefined &&
     Utils.isFunction(action.process)
   ) {
-    const preState = state[action.type];
-    return action.process(preState, action.params);
+    let preState = null;
+    if (Utils.hasOwn(action, 'value')) {
+      preState = action.value;
+    } else {
+      preState = state[action.key];
+    }
+    const nextState = action.process(preState, action.params);
+    return {
+      ...state,
+      [action.key]: nextState
+    };
+  } else {
+    if(Utils.hasOwn(action, 'value')){
+      return {
+        ...state,
+        [action.key]: action.value
+      };
+    }
   }
   return state;
 };

@@ -1,6 +1,9 @@
-export interface Element {
+export interface ElementBuildData {
   id: string;
   name: string;
-  options?: any;
-  params?: any;
+  path: string;
+  style?: string;
+  class?: string | string[];
+  option?: any;
+  content?: any;
 }

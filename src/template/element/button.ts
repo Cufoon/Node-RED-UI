@@ -1,23 +1,13 @@
-import type { Element } from '$interface/element';
-import type { RenderOptions } from '$interface/render';
+import type { RenderFunc } from '$interface/render';
+import { generateStyleAndClass } from '$template/util';
 
-export interface RenderParamsButton {
-  option: RenderOptions;
-  element: Element;
-  children?: string;
-}
-
-export const renderButton = ({
-  option,
-  element,
-  children
-}: RenderParamsButton): [content: string, name?: string] => {
+export const renderButton: RenderFunc = ({ option, element, children }) => {
   if (option.hasChildren) {
     const name = option.niceName || element.id;
     return [
       `
       const ${name} = () => {
-        return (<Button>${children}</Button>);
+        return (<Button ${generateStyleAndClass(element)}>${children}</Button>);
       }
       `,
       name
@@ -25,7 +15,8 @@ export const renderButton = ({
   }
   return [
     `
-    <Button>${element.params?.text}</Button>
-    `
+    <Button ${generateStyleAndClass(element)}>${element.content?.text}</Button>
+    `,
+    null
   ];
 };

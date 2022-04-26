@@ -6,6 +6,8 @@ import dayjs from 'dayjs';
 import { generateSnowpackConfig } from '$config/snowpack';
 import { generateFile } from '$convert';
 import { createProject } from '$scaffold';
+import { mockElement } from '$test/element';
+import { mockRoute } from '$test/route';
 
 console.log(generateSnowpackConfig());
 
@@ -27,7 +29,9 @@ const compile = async () => {
   if (!fs.existsSync(testProjectSourcePath)) {
     fs.mkdirSync(testProjectSourcePath, { recursive: true });
   }
-  if (!generateFile()) {
+  const [elements, elementsMap] = mockElement();
+  const [routes, routesMap] = mockRoute();
+  if (!generateFile({ elements, elementsMap, routes, routesMap })) {
     return;
   }
   console.log(dayjs().format('YYYY-MM-DD HH:mm:ss'), 'build success');

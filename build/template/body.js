@@ -16,20 +16,27 @@ const scan = (append, relation, data, id) => {
                     const content = scan(append, relation, data, children[i]);
                     childStr += content;
                 }
-                const [c, n] = generate_1.default.button({
+                const [c, n] = generate_1.default[item.name]({
                     option: { hasChildren: true },
                     element: item,
                     children: childStr
                 });
-                append(c);
-                return `<${n} />`;
+                if (n !== null) {
+                    append(c);
+                    return `<${n} />`;
+                }
+                return c;
             }
         }
         else {
-            const [content] = generate_1.default.button({
+            const [content, n] = generate_1.default[item.name]({
                 option: { hasChildren: false },
                 element: item
             });
+            if (n !== null) {
+                append(content);
+                return `<${n} />`;
+            }
             return content;
         }
     }
