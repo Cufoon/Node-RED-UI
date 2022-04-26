@@ -60,30 +60,8 @@ export const generateBody = (
 
   scan(append, relation, data, id);
 
-  let xxx = '';
   for (const line of generatedArray) {
     console.log(line);
-    xxx += line;
   }
-  return (
-    xxx +
-    `
-
-    const AppElement = () => {
-  return <><div>This is home page.</div><Outlet /></>;
-};
-
-// const PageElementA = () => {
-//   return <div>This is A page.</div>;
-// };
-
-const PageElementB = () => {
-  return <div>This is B page.</div>;
-};
-
-const PageElementC = () => {
-  return <div>This is C page.</div>;
-};
-`
-  );
+  return generatedArray.join('\n');
 };

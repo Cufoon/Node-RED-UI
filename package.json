@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "a node-red ui framework",
   "scripts": {
-    "build": "tsc --clean && tsc-alias",
+    "prebuild": "node ./script/clean.js",
+    "build": "tsc && tsc-alias",
     "dev": "tsc -w",
     "dev1": "tsc-alias -w",
     "clean": "node ./script/clean.js",

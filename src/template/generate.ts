@@ -10,6 +10,7 @@ import {
   renderLayoutHeader,
   renderLayoutSider
 } from './element/layout';
+import { renderOutlet } from './element/outlet';
 import { renderPage } from './element/page';
 import { renderStatefull } from './element/state';
 
@@ -29,7 +30,8 @@ const box: TemplateFuncList = {
   layoutHeader: renderLayoutHeader,
   layoutContent: renderLayoutContent,
   layoutFooter: renderLayoutFooter,
-  state: renderStatefull
+  state: renderStatefull,
+  outlet: renderOutlet
 };
 
 export default box;
