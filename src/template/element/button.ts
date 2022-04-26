@@ -1,5 +1,5 @@
 import type { RenderFunc } from '$interface/render';
-import { generateStyleAndClass } from '$template/util';
+import { expandChildStrList, generateStyleAndClass } from '$template/util';
 
 export const renderButton: RenderFunc = ({ option, element, children }) => {
   if (option.hasChildren) {
@@ -7,7 +7,11 @@ export const renderButton: RenderFunc = ({ option, element, children }) => {
     return [
       `
       const ${name} = () => {
-        return (<Button ${generateStyleAndClass(element)}>${children}</Button>);
+        return (
+          <Button ${generateStyleAndClass(element)}>
+          ${expandChildStrList(children, element)}
+          </Button>
+        );
       }
       `,
       name
@@ -15,7 +19,10 @@ export const renderButton: RenderFunc = ({ option, element, children }) => {
   }
   return [
     `
-    <Button ${generateStyleAndClass(element)}>${element.content?.text}</Button>
+    <Button ${generateStyleAndClass(element)}>${expandChildStrList(
+      children,
+      element
+    )}</Button>
     `,
     null
   ];

@@ -40,10 +40,10 @@ export const mockElement = (): [
     path: 'root-button15-button16-button5-button4',
     content: { text: 'Button4' }
   });
-  elements.set('Button5', {
-    id: 'Button5',
+  elements.set('Button17', {
+    id: 'Button17',
     name: 'layoutSider',
-    path: 'root-button15-button16-button5',
+    path: 'root-button15-button16-button17',
     content: { text: 'Button5' }
   });
   elements.set('Button6', {
@@ -112,10 +112,10 @@ export const mockElement = (): [
     path: 'root-button15-button16',
     content: { text: 'Button16' }
   });
-  elements.set('Button17', {
-    id: 'Button17',
+  elements.set('Button5', {
+    id: 'Button5',
     name: 'state',
-    path: 'root-button15-button16-button5',
+    path: 'root-button15-button16-button17-button5',
     option: {
       list: ['aaa'],
       handler: [

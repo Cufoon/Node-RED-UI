@@ -11,15 +11,15 @@ const scan = (append, relation, data, id) => {
         if (relation.has(id)) {
             const children = relation.get(id);
             if ((0, check_1.isArray)(children) && children.length > 0) {
-                let childStr = '';
+                const childStrList = [];
                 for (let i = 0; i < children.length; ++i) {
                     const content = scan(append, relation, data, children[i]);
-                    childStr += content;
+                    childStrList.push(content);
                 }
                 const [c, n] = generate_1.default[item.name]({
                     option: { hasChildren: true },
                     element: item,
-                    children: childStr
+                    children: childStrList
                 });
                 if (n !== null) {
                     append(c);

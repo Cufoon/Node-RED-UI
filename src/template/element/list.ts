@@ -1,10 +1,10 @@
 import { RenderFunc } from '$interface/render';
-import { generateStyleAndClass } from '$template/util';
+import { expandChildStrList, generateStyleAndClass } from '$template/util';
 
 export const renderList: RenderFunc = ({ element, children }) => {
   const result = `
     <List ${generateStyleAndClass(element)}>
-    ${children}
+    ${expandChildStrList(children, element)}
     </List>
   `;
   return [result, null];

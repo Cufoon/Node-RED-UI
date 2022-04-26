@@ -1,5 +1,5 @@
 import { RenderFunc } from '$interface/render';
-import { generateStyleAndClass } from '$template/util';
+import { expandChildStrList, generateStyleAndClass } from '$template/util';
 
 type CardOption =
   | {
@@ -15,7 +15,7 @@ export const renderCard: RenderFunc = ({ element, children }) => {
     <Card ${generateStyleAndClass(element)} ${
     (onclick && `onClick={${onclick}}`) || ''
   }>
-    ${(content && `{${content}}`) || children || element.content?.text}
+    ${(content && `{${content}}`) || expandChildStrList(children, element)}
     </Card>
   `;
   return [result, null];

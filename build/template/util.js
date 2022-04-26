@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getStatePathId = exports.generateStyleAndClass = void 0;
+exports.expandChildStrListWithRoot = exports.expandChildStrList = exports.getStatePathId = exports.generateStyleAndClass = void 0;
 const check_1 = require("../util/check");
 const generateStyleAndClass = (element) => {
     let result = '';
@@ -21,3 +21,23 @@ const generateStyleAndClass = (element) => {
 exports.generateStyleAndClass = generateStyleAndClass;
 const getStatePathId = (p, k) => `${p}-${k}`;
 exports.getStatePathId = getStatePathId;
+const expandChildStrList = (p, e) => {
+    var _a, _b;
+    if ((0, check_1.isArray)(p)) {
+        return p.join('\n');
+    }
+    if ((_a = e.content) === null || _a === void 0 ? void 0 : _a.text) {
+        return (_b = e.content) === null || _b === void 0 ? void 0 : _b.text;
+    }
+    return '';
+};
+exports.expandChildStrList = expandChildStrList;
+const expandChildStrListWithRoot = (p, e) => {
+    const isHasOnlyChild = (0, check_1.isArray)(p) && p.length === 1;
+    return `
+    ${isHasOnlyChild ? '' : '<>'}
+    ${(0, exports.expandChildStrList)(p, e)}
+    ${isHasOnlyChild ? '' : '</>'}
+  `;
+};
+exports.expandChildStrListWithRoot = expandChildStrListWithRoot;

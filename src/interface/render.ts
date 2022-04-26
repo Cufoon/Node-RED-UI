@@ -8,7 +8,7 @@ export interface RenderOptions {
 interface RenderParams {
   option: RenderOptions;
   element: ElementBuildData;
-  children?: string;
+  children?: string[];
 }
 
 export type RenderFunc = (

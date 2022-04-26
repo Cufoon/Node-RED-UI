@@ -5,7 +5,7 @@ const util_1 = require("../../template/util");
 const renderList = ({ element, children }) => {
     const result = `
     <List ${(0, util_1.generateStyleAndClass)(element)}>
-    ${children}
+    ${(0, util_1.expandChildStrList)(children, element)}
     </List>
   `;
     return [result, null];

@@ -18,3 +18,28 @@ export const generateStyleAndClass = (element: ElementBuildData): string => {
 };
 
 export const getStatePathId = (p: string, k: string): string => `${p}-${k}`;
+
+export const expandChildStrList = (
+  p: string[] | undefined,
+  e: ElementBuildData
+) => {
+  if (isArray(p)) {
+    return p.join('\n');
+  }
+  if (e.content?.text) {
+    return e.content?.text;
+  }
+  return '';
+};
+
+export const expandChildStrListWithRoot = (
+  p: string[] | undefined,
+  e: ElementBuildData
+) => {
+  const isHasOnlyChild = isArray(p) && p.length === 1;
+  return `
+    ${isHasOnlyChild ? '' : '<>'}
+    ${expandChildStrList(p, e)}
+    ${isHasOnlyChild ? '' : '</>'}
+  `;
+};

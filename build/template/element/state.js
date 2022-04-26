@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.renderStatefull = void 0;
 const util_1 = require("../../template/util");
 const renderStatefull = ({ element, children }) => {
-    var _a, _b, _c, _d;
+    var _a, _b, _c;
     const useDispatch = 'const dispatch = useDispatch();\n';
     let useState = '';
     (_a = element.option) === null || _a === void 0 ? void 0 : _a.list.map((item) => {
@@ -38,11 +38,7 @@ const renderStatefull = ({ element, children }) => {
     ${useState}
     ${methods}
     ${mounted}
-    return (
-      <>
-      ${children || ((_d = element.content) === null || _d === void 0 ? void 0 : _d.text)}
-      </>
-    );
+    return (${(0, util_1.expandChildStrListWithRoot)(children, element)});
   }
   `;
     return [result, element.id];

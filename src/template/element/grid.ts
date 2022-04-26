@@ -1,13 +1,13 @@
 import { RenderFunc } from '$interface/render';
-import { generateStyleAndClass } from '$template/util';
+import { expandChildStrList, generateStyleAndClass } from '$template/util';
 
 export const renderGrid: RenderFunc = ({ element, children }) => {
   const result = `
-  const ${element.id} = () => {
-    <div ${generateStyleAndClass(element)}>
-    ${children}
-    </div>
-  }
+    const ${element.id} = () => {
+      <div ${generateStyleAndClass(element)}>
+      ${expandChildStrList(children, element)}
+      </div>
+    }
   `;
   return [result, element.id];
 };
@@ -15,7 +15,7 @@ export const renderGrid: RenderFunc = ({ element, children }) => {
 export const renderRow: RenderFunc = ({ element, children }) => {
   const result = `
     <Grid.Row ${generateStyleAndClass(element)}>
-    ${children}
+    ${expandChildStrList(children, element)}
     </Grid.Row>
   `;
   return [result, null];
@@ -24,7 +24,7 @@ export const renderRow: RenderFunc = ({ element, children }) => {
 export const renderCol: RenderFunc = ({ element, children }) => {
   const result = `
     <Grid.Col ${generateStyleAndClass(element)}>
-    ${children}
+    ${expandChildStrList(children, element)}
     </Grid.Col>
   `;
   return [result, null];

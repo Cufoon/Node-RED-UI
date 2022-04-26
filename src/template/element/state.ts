@@ -1,5 +1,5 @@
 import { RenderFunc } from '$interface/render';
-import { getStatePathId } from '$template/util';
+import { expandChildStrListWithRoot, getStatePathId } from '$template/util';
 
 type StateUse =
   | {
@@ -46,11 +46,7 @@ export const renderStatefull: RenderFunc = ({ element, children }) => {
     ${useState}
     ${methods}
     ${mounted}
-    return (
-      <>
-      ${children || element.content?.text}
-      </>
-    );
+    return (${expandChildStrListWithRoot(children, element)});
   }
   `;
 
