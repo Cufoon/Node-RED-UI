@@ -12,6 +12,7 @@
   "author": "Cufoon",
   "license": "MIT",
   "devDependencies": {
+    "@snowpack/plugin-react-refresh": "^2.5.0",
     "@types/fs-extra": "^9.0.13",
     "@typescript-eslint/eslint-plugin": "^5.20.0",
     "@typescript-eslint/parser": "^5.20.0",
@@ -28,6 +29,7 @@
   },
   "dependencies": {
     "@arco-design/web-react": "^2.32.0",
+    "@snowpack/plugin-sass": "^1.4.0",
     "dayjs": "^1.11.1",
     "fs-extra": "^10.1.0"
   },

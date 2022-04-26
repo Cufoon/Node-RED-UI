@@ -1,11 +1,11 @@
 import childProcess from 'node:child_process';
 import path from 'node:path';
 import fs from 'fs-extra';
+import dayjs from 'dayjs';
 // import * as snowpack from 'snowpack';
 import { generateSnowpackConfig } from '$config/snowpack';
 import { generateFile } from '$convert';
 import { createProject } from '$scaffold';
-import dayjs from 'dayjs';
 
 console.log(generateSnowpackConfig());
 

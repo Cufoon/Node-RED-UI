@@ -1,6 +1,6 @@
-export interface Element<T, U> {
+export interface Element {
   id: string;
   name: string;
-  options?: T;
-  params?: U;
+  options?: any;
+  params?: any;
 }

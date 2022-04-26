@@ -9,7 +9,7 @@ import path from 'node:path';
 export const createProject = () => {
   const rootPath = path.resolve(__dirname, '../test/public');
   const indexHtmlPath = path.resolve(__dirname, '../test/public/index.html');
-  const indexCssPath = path.resolve(__dirname, '../test/public/index.css');
+  const indexCssPath = path.resolve(__dirname, '../test/public/index.scss');
   const packageJSONPath = path.resolve(__dirname, '../test/package.json');
   const indexHtml = generateIndexHtml('Cufoon Web');
   const indexCss = generateIndexCss();

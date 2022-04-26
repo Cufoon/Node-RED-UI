@@ -12,7 +12,8 @@ const generatePackageJSON = (name = 'ui') => {
         dependencies: {
             react: '^18.0.0',
             'react-dom': '^18.0.0',
-            'react-router-dom': '^6.3.0'
+            'react-router-dom': '^6.3.0',
+            '@arco-design/web-react': '^2.32.1'
         }
     };
     return JSON.stringify(packageJSON);
@@ -38,6 +39,7 @@ const generateIndexHtml = (title = 'Node-RED Web') => {
 exports.generateIndexHtml = generateIndexHtml;
 const generateIndexCss = () => {
     return `
+  @use "@arco-design/web-react/dist/css/arco.css";
   /* Add CSS styles here! */
   body {
     font-family: sans-serif;

@@ -8,9 +8,7 @@ export const generateSnowpackConfig = (): SnowpackUserConfig => {
       public: '/',
       src: '/dist'
     },
-    plugins: [
-      /* ... */
-    ],
+    plugins: ['@snowpack/plugin-sass', '@snowpack/plugin-react-refresh'],
     routes: [
       /* Enable an SPA Fallback in development: */
       { match: 'routes', src: '.*', dest: '/index.html' }
@@ -21,6 +19,7 @@ export const generateSnowpackConfig = (): SnowpackUserConfig => {
     },
     packageOptions: {
       /* ... */
+      knownEntrypoints: ['compute-scroll-into-view']
     },
     devOptions: {
       /* ... */

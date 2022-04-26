@@ -8,7 +8,7 @@ const node_path_1 = tslib_1.__importDefault(require("node:path"));
 const createProject = () => {
     const rootPath = node_path_1.default.resolve(__dirname, '../test/public');
     const indexHtmlPath = node_path_1.default.resolve(__dirname, '../test/public/index.html');
-    const indexCssPath = node_path_1.default.resolve(__dirname, '../test/public/index.css');
+    const indexCssPath = node_path_1.default.resolve(__dirname, '../test/public/index.scss');
     const packageJSONPath = node_path_1.default.resolve(__dirname, '../test/package.json');
     const indexHtml = (0, project_1.generateIndexHtml)('Cufoon Web');
     const indexCss = (0, project_1.generateIndexCss)();

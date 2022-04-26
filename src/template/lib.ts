@@ -3,6 +3,8 @@ export const generateImportation = () => {
   import React, { createContext, useReducer } from 'react';
   import { createRoot } from 'react-dom/client';
   import { BrowserRouter, Route, Routes, Outlet } from 'react-router-dom';
+  import { Card } from '@arco-design/web-react';
+  // import "@arco-design/web-react/dist/css/arco.css";
 
   const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)");
 
@@ -19,5 +21,9 @@ export const generateImportation = () => {
       return {}.toString.call(data) === '[object Function]';
     }
   };
+
+  const Button = ({children}) => {
+    return <Card>{children}</Card>;
+  }
   `;
 };
