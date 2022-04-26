@@ -4,9 +4,9 @@ exports.renderPage = void 0;
 const util_1 = require("../../template/util");
 const renderPage = ({ element, children }) => {
     const result = `
-  const ${element.id} = () => {
-    return (${(0, util_1.expandChildStrListWithRoot)(children, element)});
-  }
+    const ${element.id} = () => {
+      return (${(0, util_1.expandChildStrListWithRoot)(children, element)});
+    }
   `;
     return [result, element.id];
 };

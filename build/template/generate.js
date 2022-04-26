@@ -5,6 +5,7 @@ const card_1 = require("./element/card");
 const divider_1 = require("./element/divider");
 const grid_1 = require("./element/grid");
 const layout_1 = require("./element/layout");
+const outlet_1 = require("./element/outlet");
 const page_1 = require("./element/page");
 const state_1 = require("./element/state");
 const box = {
@@ -19,6 +20,7 @@ const box = {
     layoutHeader: layout_1.renderLayoutHeader,
     layoutContent: layout_1.renderLayoutContent,
     layoutFooter: layout_1.renderLayoutFooter,
-    state: state_1.renderStatefull
+    state: state_1.renderStatefull,
+    outlet: outlet_1.renderOutlet
 };
 exports.default = box;

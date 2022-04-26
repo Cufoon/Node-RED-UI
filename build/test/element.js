@@ -4,11 +4,28 @@ exports.mockElement = void 0;
 const mockElement = () => {
     const elements = new Map();
     const elementsMap = new Map();
-    elements.set('root', {
+    elements.set('AppElement', {
+        id: 'AppElement',
+        name: 'outlet',
+        path: 'AppElement'
+    });
+    elements.set('PageElementC', {
+        id: 'PageElementC',
+        name: 'page',
+        path: 'AppElement-PageElementC',
+        content: { text: 'This is C page.' }
+    });
+    elements.set('PageElementB', {
+        id: 'PageElementB',
+        name: 'page',
+        path: 'AppElement-PageElementB',
+        content: { text: 'This is B page.' }
+    });
+    elements.set('PageElementA', {
         id: 'PageElementA',
         name: 'page',
-        path: 'root',
-        content: { text: 'root' }
+        path: 'AppElement-PageElementA',
+        content: { text: 'This is A page.' }
     });
     elements.set('Button1', {
         id: 'Button1',
@@ -123,7 +140,12 @@ const mockElement = () => {
             mount: ['init']
         }
     });
-    elementsMap.set('root', ['Button15']);
+    elementsMap.set('AppElement', [
+        'PageElementA',
+        'PageElementB',
+        'PageElementC'
+    ]);
+    elementsMap.set('PageElementA', ['Button15']);
     elementsMap.set('Button15', ['Button2', 'Button16', 'Button12']);
     elementsMap.set('Button16', ['Button17', 'Button9']);
     elementsMap.set('Button17', ['Button5']);
