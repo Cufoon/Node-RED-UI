@@ -6,16 +6,59 @@ export const mockElement = (): [
 ] => {
   const elements = new Map<string, ElementBuildData>();
   const elementsMap = new Map<string, string[]>();
+  elements.set('root', {
+    id: 'root',
+    name: 'root',
+    path: 'root'
+  });
   elements.set('AppElement', {
     id: 'AppElement',
-    name: 'outlet',
-    path: 'AppElement'
+    name: 'layout',
+    path: 'app'
   });
-  elements.set('PageElementC', {
-    id: 'PageElementC',
+  elements.set('AppLayout', {
+    id: 'AppLayout',
+    name: 'layout',
+    path: 'app-layout'
+  });
+  elements.set('AppHeader', {
+    id: 'AppHeader',
+    name: 'layoutHeader',
+    path: 'app-header',
+    content: { text: 'This is AppHeader!' }
+  });
+  elements.set('AppSider', {
+    id: 'AppSider',
+    name: 'layoutSider',
+    path: 'app-sider'
+  });
+  elements.set('AppContent', {
+    id: 'AppContent',
+    name: 'layoutContent',
+    path: 'app-content'
+  });
+  elements.set('AppFooter', {
+    id: 'AppFooter',
+    name: 'layoutFooter',
+    path: 'app-footer',
+    content: { text: 'This is AppFooter!' }
+  });
+  elements.set('AppSiderMenu', {
+    id: 'AppSiderMenu',
+    name: 'menu',
+    path: 'app-sider-menu'
+  });
+  elements.set('AppContentOutlet', {
+    id: 'AppContentOutlet',
+    name: 'outlet',
+    path: 'app-content-outlet'
+  });
+
+  elements.set('PageElementA', {
+    id: 'PageElementA',
     name: 'page',
-    path: 'AppElement-PageElementC',
-    content: { text: 'This is C page.' }
+    path: 'AppElement-PageElementA',
+    content: { text: 'This is A page.' }
   });
   elements.set('PageElementB', {
     id: 'PageElementB',
@@ -23,148 +66,154 @@ export const mockElement = (): [
     path: 'AppElement-PageElementB',
     content: { text: 'This is B page.' }
   });
-  elements.set('PageElementA', {
-    id: 'PageElementA',
+  elements.set('PageElementC', {
+    id: 'PageElementC',
     name: 'page',
-    path: 'AppElement-PageElementA',
-    content: { text: 'This is A page.' }
+    path: 'AppElement-PageElementC',
+    content: { text: 'This is C page.' }
   });
-  elements.set('Button1', {
-    id: 'Button1',
-    name: 'card',
-    path: 'root-button15-button16-button5-button1',
-    content: { text: 'Button1' },
-    option: {
-      onclick: 'upup',
-      content: 'aaa'
-    }
-  });
-  elements.set('Button2', {
-    id: 'Button2',
-    name: 'layoutHeader',
-    path: 'root-button15-button2',
-    content: { text: 'Button2' }
-  });
-  elements.set('Button3', {
-    id: 'Button3',
-    name: 'card',
-    path: 'root-button15-button16-button5-button3',
-    content: { text: 'Button3' }
-  });
-  elements.set('Button4', {
-    id: 'Button4',
-    name: 'card',
-    path: 'root-button15-button16-button5-button4',
-    content: { text: 'Button4' }
-  });
-  elements.set('Button17', {
-    id: 'Button17',
-    name: 'layoutSider',
-    path: 'root-button15-button16-button17',
-    content: { text: 'Button5' }
-  });
-  elements.set('Button6', {
-    id: 'Button6',
-    name: 'card',
-    path: 'root-button15-button16-button9-button6',
-    content: { text: 'Button6' }
-  });
-  elements.set('Button7', {
-    id: 'Button7',
-    name: 'card',
-    path: 'root-button15-button16-button9-button7',
-    content: { text: 'Button7' }
-  });
-  elements.set('Button8', {
-    id: 'Button8',
-    name: 'card',
-    path: 'root-button15-button16-button5-button8',
-    content: { text: 'Button8' }
-  });
-  elements.set('Button9', {
-    id: 'Button9',
-    name: 'layoutContent',
-    path: 'root-button15-button16-button9',
-    content: { text: 'Button9' }
-  });
-  elements.set('Button10', {
-    id: 'Button10',
-    name: 'card',
-    path: 'root-button15-button16-button9-button10',
-    content: { text: 'Button10' }
-  });
-  elements.set('Button11', {
-    id: 'Button11',
-    name: 'card',
-    path: 'root-button15-button16-button9-button11',
-    content: { text: 'Button11' }
-  });
-  elements.set('Button12', {
-    id: 'Button12',
-    name: 'layoutFooter',
-    path: 'root-button15-button12',
-    content: { text: 'Button12' }
-  });
-  elements.set('Button13', {
-    id: 'Button13',
-    name: 'card',
-    path: 'root-button15-button16-button5-button13',
-    content: { text: 'Button13' }
-  });
-  elements.set('Button14', {
-    id: 'Button14',
-    name: 'card',
-    path: 'root-button15-button16-button9-button14',
-    content: { text: 'Button14' }
-  });
-  elements.set('Button15', {
-    id: 'Button15',
-    name: 'layout',
-    path: 'root-button5',
-    content: { text: 'Button15' }
-  });
-  elements.set('Button16', {
-    id: 'Button16',
-    name: 'layout',
-    path: 'root-button15-button16',
-    content: { text: 'Button16' }
-  });
-  elements.set('Button5', {
-    id: 'Button5',
+
+  elements.set('State1', {
+    id: 'State1',
     name: 'state',
-    path: 'root-button15-button16-button17-button5',
+    path: 'app-page-a-state1',
     option: {
       list: ['aaa'],
       handler: [
         ['upup', 'set_aaa(aaa + 1)'],
         ['init', 'set_aaa(0)']
       ],
-      mount: ['init']
+      effect: [[[], 'init()']]
     }
   });
-  elementsMap.set('AppElement', [
+
+  elements.set('State2', {
+    id: 'State2',
+    name: 'state',
+    path: 'app-page-a-state2',
+    option: {
+      list: ['chart'],
+      state: [
+        ['temperature', '[]'],
+        ['timer', 0]
+      ],
+      handler: [
+        [
+          'upup',
+          `
+          const data = {};
+          data.x = [...chart.x, ...chart.x];
+          data.y = [...chart.y, ...chart.y];
+          set_chart(data);
+          `
+        ],
+        [
+          'init',
+          `set_chart({
+            x: [1, 2, 3, 4, 5, 6],
+            y: [1, 3, 2, 5, 4, 1]
+          })`
+        ]
+      ],
+      request: [
+        [
+          [],
+          `
+          useRequest('/api/active-data/temperature',{
+            method: 'get',
+            loadingText: '加载温度中',
+            success: (res) => {
+              set_temperature(res.temperature);
+            },
+            fail: (err) => {
+              GlobalMessage.error(err)
+            }
+          },[timer])
+          `
+        ],
+        [
+          [],
+          `
+          useInterval(()=>{
+            let next = timer + 1;
+            if (next > 99999999) {
+              next = 0;
+            }
+            set_timer(next);
+          },1000)
+          `
+        ]
+      ],
+      effect: [
+        [
+          ['temperature'],
+          `
+          const x = [];
+          const y = [];
+          temperature.map((item)=>{
+            x.push(dayjs(item.time).format('HH:mm:ss'));
+            y.push(item.value);
+          });
+          set_chart({x,y});
+          `
+        ]
+      ]
+    }
+  });
+
+  elements.set('Part1', {
+    id: 'Part1',
+    name: 'card',
+    path: 'app-page-a-state1-part1',
+    content: { text: 'Part1' }
+  });
+  elements.set('Part2', {
+    id: 'Part2',
+    name: 'card',
+    path: 'app-page-a-state1-part2',
+    content: { text: 'Part2' },
+    option: {
+      onclick: 'upup',
+      content: 'aaa'
+    }
+  });
+  elements.set('Part3', {
+    id: 'Part3',
+    name: 'card',
+    path: 'app-page-a-state1-part3',
+    content: { text: 'Part3' }
+  });
+
+  elements.set('Part4', {
+    id: 'Part4',
+    name: 'chartLine',
+    path: 'app-page-a-state2-part4',
+    option: {
+      chart: {
+        data: 'chart',
+        name: '温度',
+        borderColor: '#00ff00',
+        backgroundColor: '#00aa00'
+      },
+      onclick: 'upup'
+    },
+    content: { text: 'Part4' }
+  });
+
+  elementsMap.set('root', [
+    'AppElement',
     'PageElementA',
     'PageElementB',
     'PageElementC'
   ]);
-  elementsMap.set('PageElementA', ['Button15']);
-  elementsMap.set('Button15', ['Button2', 'Button16', 'Button12']);
-  elementsMap.set('Button16', ['Button17', 'Button9']);
-  elementsMap.set('Button17', ['Button5']);
-  elementsMap.set('Button5', [
-    'Button1',
-    'Button3',
-    'Button13',
-    'Button8',
-    'Button4'
-  ]);
-  elementsMap.set('Button9', [
-    'Button6',
-    'Button7',
-    'Button10',
-    'Button11',
-    'Button14'
-  ]);
+  elementsMap.set('AppElement', ['AppHeader', 'AppLayout', 'AppFooter']);
+  elementsMap.set('AppLayout', ['AppSider', 'AppContent']);
+  elementsMap.set('AppSider', ['AppSiderMenu']);
+  elementsMap.set('AppContent', ['AppContentOutlet']);
+  elementsMap.set('PageElementA', ['State1']);
+  elementsMap.set('State1', ['Part1', 'Part2', 'Part3']);
+  elementsMap.set('PageElementC', ['State2']);
+  elementsMap.set('State2', ['Part4']);
 
   return [elements, elementsMap];
 };

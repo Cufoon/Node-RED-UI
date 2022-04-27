@@ -3,10 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.renderStatefull = void 0;
 const util_1 = require("../../template/util");
 const renderStatefull = ({ element, children }) => {
-    var _a, _b, _c;
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
     const useDispatch = 'const dispatch = useDispatch();\n';
     let useState = '';
-    (_a = element.option) === null || _a === void 0 ? void 0 : _a.list.map((item) => {
+    (_b = (_a = element.option) === null || _a === void 0 ? void 0 : _a.list) === null || _b === void 0 ? void 0 : _b.map((item) => {
         const key = (0, util_1.getStatePathId)(element.path, item);
         useState += `
     const ${item} = useSelector(store => store['${key}']);
@@ -18,26 +18,48 @@ const renderStatefull = ({ element, children }) => {
     }
     `;
     });
+    (_d = (_c = element.option) === null || _c === void 0 ? void 0 : _c.state) === null || _d === void 0 ? void 0 : _d.map((item) => {
+        useState += `const [${item[0]}, set_${item[0]}] = useState(${item[1]});`;
+    });
     let methods = '';
-    (_b = element.option) === null || _b === void 0 ? void 0 : _b.handler.map((item) => {
+    (_f = (_e = element.option) === null || _e === void 0 ? void 0 : _e.handler) === null || _f === void 0 ? void 0 : _f.map((item) => {
         methods += `const ${item[0]} = (...args) => {
       ${item[1]}
     };
     `;
     });
-    let mounted = '';
-    (_c = element.option) === null || _c === void 0 ? void 0 : _c.mount.map((item) => {
-        mounted += `useEffect(()=>{
-      ${item}();
-    },[])
+    let request = '';
+    (_h = (_g = element.option) === null || _g === void 0 ? void 0 : _g.request) === null || _h === void 0 ? void 0 : _h.map((item) => {
+        if (item[0].length > 1) {
+            request += `const {loading: ${item[0][0]}, error: ${item[0][1]}, data: ${item[0][2]}} = ${item[1].trimStart()}`;
+        }
+        else if (item[0].length === 1) {
+            request += `const ${item[0][0]} = async() => {
+        ${item[1]}
+      }`;
+        }
+        else {
+            request += `${item[1]}`;
+        }
+    });
+    let effect = '';
+    (_k = (_j = element.option) === null || _j === void 0 ? void 0 : _j.effect) === null || _k === void 0 ? void 0 : _k.map((item) => {
+        let effectDep = '';
+        if (item[0].length > 0) {
+            effectDep = item[0].join(',');
+        }
+        effect += `useEffect(()=>{
+      ${item[1]}
+    },[${effectDep}])
     `;
     });
     const result = `
   const ${element.id} = () => {
-    ${useDispatch}
-    ${useState}
-    ${methods}
-    ${mounted}
+    ${useDispatch.trim()}
+    ${useState.trim()}
+    ${methods.trim()}
+    ${request.trim()}
+    ${effect.trim()}
     return (${(0, util_1.expandChildStrListWithRoot)(children, element)});
   }
   `;

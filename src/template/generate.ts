@@ -1,6 +1,7 @@
 import { RenderFunc } from '$interface/render';
 import { renderButton } from './element/button';
 import { renderCard } from './element/card';
+import { renderChartLine } from './element/chart';
 import { renderDivider } from './element/divider';
 import { renderCol, renderRow } from './element/grid';
 import {
@@ -10,8 +11,10 @@ import {
   renderLayoutHeader,
   renderLayoutSider
 } from './element/layout';
+import { renderMenu } from './element/menu';
 import { renderOutlet } from './element/outlet';
 import { renderPage } from './element/page';
+import { renderRoot } from './element/root';
 import { renderStatefull } from './element/state';
 
 interface TemplateFuncList {
@@ -19,6 +22,7 @@ interface TemplateFuncList {
 }
 
 const box: TemplateFuncList = {
+  root: renderRoot,
   button: renderButton,
   page: renderPage,
   card: renderCard,
@@ -31,7 +35,9 @@ const box: TemplateFuncList = {
   layoutContent: renderLayoutContent,
   layoutFooter: renderLayoutFooter,
   state: renderStatefull,
-  outlet: renderOutlet
+  outlet: renderOutlet,
+  menu: renderMenu,
+  chartLine: renderChartLine
 };
 
 export default box;

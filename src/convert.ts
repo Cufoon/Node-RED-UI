@@ -24,7 +24,7 @@ export const generateFile: Func = ({
   try {
     const importation = generateImportation();
     const store = generateStore();
-    const generatedBody = generateBody(elementsMap, elements, 'AppElement');
+    const generatedBody = generateBody(elementsMap, elements, 'root');
     const appRender = generateAppRender('app');
     const generatedRoutes = generateRoute(routesMap, routes, 'root');
 

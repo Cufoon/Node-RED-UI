@@ -20,7 +20,8 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint'],
   rules: {
-    'no-this-alias': false
+    'no-this-alias': 0,
+    'react/prop-types': 0
   },
   settings: {
     //解决路径引用ts文件报错的问题

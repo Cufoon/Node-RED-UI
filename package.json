@@ -6,8 +6,7 @@
     "prebuild": "node ./script/clean.js",
     "build": "tsc && tsc-alias",
     "dev": "tsc -w",
-    "dev1": "tsc-alias -w",
-    "clean": "node ./script/clean.js",
+    "dev:build": "tsc-alias && node ./build/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Cufoon",
@@ -23,6 +22,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-import-resolver-typescript": "^2.7.1",
     "eslint-plugin-react": "^7.29.4",
+    "http2-proxy": "^5.0.53",
     "prettier": "^2.6.2",
     "snowpack": "^3.8.8",
     "tsc-alias": "^1.6.7",

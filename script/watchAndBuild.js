@@ -10,6 +10,12 @@ const runTask = () => {
   console.log('------------------------------------------------');
   console.log(dayjs().format('YYYY-MM-DD HH:mm:ss'));
   console.log(result.toString());
+  const result1 = childProcess.execSync('yarn run build:site', {
+    cwd: path.resolve(__dirname, '..')
+  });
+  console.log('------------------------------------------------');
+  console.log(dayjs().format('YYYY-MM-DD HH:mm:ss'));
+  console.log(result1.toString());
 };
 
 const createTaskScheduler = () => {
@@ -52,7 +58,7 @@ const createTaskScheduler = () => {
 
 const taskScheduler = createTaskScheduler();
 
-const watcher = chokidar.watch(path.resolve(__dirname, '../src'), {
+const watcher = chokidar.watch(path.resolve(__dirname, '../build'), {
   // ignored: /(^|[\/\\])\../, // ignore dotfiles
   persistent: true
 });

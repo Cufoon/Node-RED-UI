@@ -13,7 +13,14 @@ const generatePackageJSON = (name = 'ui') => {
             react: '^18.0.0',
             'react-dom': '^18.0.0',
             'react-router-dom': '^6.3.0',
-            '@arco-design/web-react': '^2.32.1'
+            '@arco-design/web-react': '^2.32.1',
+            'chart.js': '^3.7.1',
+            'react-chartjs-2': '^4.1.0',
+            'umi-request': '^1.4.0',
+            qs: '^6.10.3',
+            lodash: '^4.17.21',
+            dayjs: '^1.11.1',
+            ahooks: '^3.3.10'
         }
     };
     return JSON.stringify(packageJSON);
