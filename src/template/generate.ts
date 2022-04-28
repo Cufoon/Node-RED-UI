@@ -15,6 +15,7 @@ import { renderMenu } from './element/menu';
 import { renderOutlet } from './element/outlet';
 import { renderPage } from './element/page';
 import { renderRoot } from './element/root';
+import { renderSelect } from './element/select';
 import { renderStatefull } from './element/state';
 import { renderTable } from './element/table';
 
@@ -40,7 +41,8 @@ const box: TemplateFuncList = {
   page: renderPage,
   row: renderRow,
   state: renderStatefull,
-  table: renderTable
+  table: renderTable,
+  select: renderSelect
 };
 
 export default box;

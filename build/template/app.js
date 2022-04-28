@@ -6,13 +6,11 @@ const generateAppRender = (root) => {
   const appContainer = document.getElementById('${root}');
   const appRoot = createRoot(appContainer);
   appRoot.render(
-    <React.StrictMode>
-      <GlobalStateComponent>
-        <BrowserRouter>
-          <RouteList />
-        </BrowserRouter>
-      </GlobalStateComponent>
-    </React.StrictMode>
+    <GlobalStateComponent>
+      <BrowserRouter>
+        <RouteList />
+      </BrowserRouter>
+    </GlobalStateComponent>
   );
   `;
 };

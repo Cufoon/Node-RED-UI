@@ -525,6 +525,41 @@ export const mockElement = (): [
     }
   });
 
+  elements.set('State6', {
+    id: 'State6',
+    name: 'state',
+    path: 'ggggggggggggg',
+    option: {
+      list: ['checkedType'],
+      handler: [
+        [
+          'onChange',
+          `
+          console.log(args[0]);
+          set_checkedType(args[0]);
+          `
+        ]
+      ],
+      effect: [[[], `set_checkedType(1)`]]
+    }
+  });
+
+  elements.set('Select1', {
+    id: 'Select1',
+    name: 'select',
+    path: '',
+    option: {
+      defaultValue: `'ddddddd'`,
+      value: 'checkedType',
+      select_options: [
+        { value: 1, text: '光照' },
+        { value: 2, text: '温度' },
+        { value: 3, text: '湿度' }
+      ],
+      onChange: 'onChange'
+    }
+  });
+
   elements.set('Card4', {
     id: 'Card4',
     name: 'card',
@@ -559,8 +594,9 @@ export const mockElement = (): [
   elementsMap.set('State3', ['Part5']);
   elementsMap.set('State4', ['Part6']);
   elementsMap.set('PageElementB', ['Card4']);
-  elementsMap.set('Card4', ['State5']);
+  elementsMap.set('Card4', ['State6', 'State5']);
   elementsMap.set('State5', ['Table1']);
+  elementsMap.set('State6', ['Select1']);
 
   return [elements, elementsMap];
 };

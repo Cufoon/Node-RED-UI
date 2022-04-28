@@ -10,6 +10,7 @@ const menu_1 = require("./element/menu");
 const outlet_1 = require("./element/outlet");
 const page_1 = require("./element/page");
 const root_1 = require("./element/root");
+const select_1 = require("./element/select");
 const state_1 = require("./element/state");
 const table_1 = require("./element/table");
 const box = {
@@ -30,6 +31,7 @@ const box = {
     page: page_1.renderPage,
     row: grid_1.renderRow,
     state: state_1.renderStatefull,
-    table: table_1.renderTable
+    table: table_1.renderTable,
+    select: select_1.renderSelect
 };
 exports.default = box;
