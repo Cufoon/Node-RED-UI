@@ -1,18 +1,15 @@
 import { RenderFunc } from '$interface/render';
-import { expandChildStrList, generateStyleAndClass } from '$template/util';
-
-type CardOption =
-  | {
-      onclick?: string;
-    }
-  | undefined;
+import {
+  expandChildStrList,
+  expandOptions,
+  generateStyleAndClass
+} from '$template/util';
 
 export const renderCard: RenderFunc = ({ element, children }) => {
-  const onclick = (element.option as CardOption)?.onclick;
   const result = `
-    <Card ${generateStyleAndClass(element)} ${
-    (onclick && `onClick={${onclick}}`) || ''
-  }>
+    <Card
+    ${generateStyleAndClass(element)}
+    ${expandOptions(element.option, ['onClick', 'title'])}>
     ${expandChildStrList(children, element)}
     </Card>
   `;

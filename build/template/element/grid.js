@@ -5,9 +5,9 @@ const util_1 = require("../../template/util");
 const renderGrid = ({ element, children }) => {
     const result = `
     const ${element.id} = () => {
-      <div ${(0, util_1.generateStyleAndClass)(element)}>
+      return (<div ${(0, util_1.generateStyleAndClass)(element)}>
       ${(0, util_1.expandChildStrList)(children, element)}
-      </div>
+      </div>);
     }
   `;
     return [result, element.id];
@@ -15,7 +15,11 @@ const renderGrid = ({ element, children }) => {
 exports.renderGrid = renderGrid;
 const renderRow = ({ element, children }) => {
     const result = `
-    <Grid.Row ${(0, util_1.generateStyleAndClass)(element)}>
+    <Grid.Row ${(0, util_1.generateStyleAndClass)(element)}${(0, util_1.expandOptions)(element.option, [
+        'gutter',
+        'align',
+        'justify'
+    ])}>
     ${(0, util_1.expandChildStrList)(children, element)}
     </Grid.Row>
   `;
@@ -24,7 +28,22 @@ const renderRow = ({ element, children }) => {
 exports.renderRow = renderRow;
 const renderCol = ({ element, children }) => {
     const result = `
-    <Grid.Col ${(0, util_1.generateStyleAndClass)(element)}>
+    <Grid.Col
+    ${(0, util_1.generateStyleAndClass)(element)}
+    ${(0, util_1.expandOptions)(element.option, [
+        'span',
+        'offset',
+        'order',
+        'push',
+        'pull',
+        'xs',
+        'sm',
+        'md',
+        'lg',
+        'xl',
+        'xxl'
+    ])}
+    >
     ${(0, util_1.expandChildStrList)(children, element)}
     </Grid.Col>
   `;

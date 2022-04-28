@@ -72,10 +72,12 @@ Utils.request = async (url, method, data, option) => {
           return [body.msg || errorMessage];
       }
       return ['', body.data];
-  }
-  catch (e) {
-      console.log('请求意外错误', e);
-      return [e.toString()];
+  } catch (e) {
+    if (e.name === 'AbortError' || e.type === 'AbortError') {
+      return ['', null];
+    }
+    console.log('请求意外错误', e);
+    return [e.toString()];
   }
 }
 
@@ -113,6 +115,8 @@ const useRequest = (url, options, deps) => {
     let data = {};
     if (options?.data && lodash.isFunction(options.data)) {
       data.data = options.data();
+    } else {
+      data.data = options.data;
     }
     let toUrl = url;
     if (options?.params) {
@@ -144,18 +148,19 @@ const useRequest = (url, options, deps) => {
 
   useEffect(() => {
     (async () => {
+      abortRef.current?.abort();
       abortRef.current = new AbortController();
       options?.before?.();
       await fetcher(abortRef.current.signal);
       options?.after?.();
     })();
-  }, [...(deps || [])]);
+  }, deps);
 
   useEffect(() => {
     livingRef.current = true;
     return () => {
       livingRef.current = false;
-      // abortRef.current?.abort();
+      abortRef.current?.abort();
     };
   }, []);
 

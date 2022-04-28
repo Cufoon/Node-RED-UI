@@ -43,3 +43,20 @@ export const expandChildStrListWithRoot = (
     ${isHasOnlyChild ? '' : '</>'}
   `;
 };
+
+export const expandOptions = (
+  options: { [index: string]: unknown } | undefined,
+  ps: string[]
+) => {
+  let result = '';
+  options &&
+    ps.forEach((item) => {
+      if (Object.prototype.hasOwnProperty.call(options, item)) {
+        result += `${item}={${options[item]}} `;
+      }
+    });
+  if (result !== '') {
+    result = ' ' + result;
+  }
+  return result;
+};

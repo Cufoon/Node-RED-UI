@@ -26,6 +26,9 @@ const renderChartLine = ({ element }) => {
       ${onClick && `onClick={${onClick}}`}
       datasetIdKey='id'
       data={${data}}
+      options={{
+        responsive: true
+      }}
     />
   `;
     return [result, null];

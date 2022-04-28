@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.renderStatefull = void 0;
 const util_1 = require("../../template/util");
 const renderStatefull = ({ element, children }) => {
-    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p;
     const useDispatch = 'const dispatch = useDispatch();\n';
     let useState = '';
     (_b = (_a = element.option) === null || _a === void 0 ? void 0 : _a.list) === null || _b === void 0 ? void 0 : _b.map((item) => {
@@ -34,7 +34,7 @@ const renderStatefull = ({ element, children }) => {
             request += `const {loading: ${item[0][0]}, error: ${item[0][1]}, data: ${item[0][2]}} = ${item[1].trimStart()}`;
         }
         else if (item[0].length === 1) {
-            request += `const ${item[0][0]} = async() => {
+            request += `const ${item[0][0]} = async(...args) => {
         ${item[1]}
       }`;
         }
@@ -53,13 +53,33 @@ const renderStatefull = ({ element, children }) => {
     },[${effectDep}])
     `;
     });
+    let frees = '';
+    (_m = (_l = element.option) === null || _l === void 0 ? void 0 : _l.free) === null || _m === void 0 ? void 0 : _m.map((item) => {
+        if (item[0].length > 0) {
+            frees += `const ${item[0][0]} = ${item[1]}`;
+        }
+        else {
+            frees += `${item[1]}`;
+        }
+    });
+    let statics = '';
+    (_p = (_o = element.option) === null || _o === void 0 ? void 0 : _o.static) === null || _p === void 0 ? void 0 : _p.map((item) => {
+        if (item[0].length > 0) {
+            statics += `const ${item[0][0]} = ${item[1]}`;
+        }
+        else {
+            statics += `${item[1]}`;
+        }
+    });
     const result = `
+  ${statics.trim()}
   const ${element.id} = () => {
     ${useDispatch.trim()}
     ${useState.trim()}
     ${methods.trim()}
     ${request.trim()}
     ${effect.trim()}
+    ${frees.trim()}
     return (${(0, util_1.expandChildStrListWithRoot)(children, element)});
   }
   `;

@@ -19,7 +19,7 @@ const generateSnowpackConfig = () => {
                 dest: (req, res) => {
                     var _a;
                     // remove /api prefix (optional)
-                    req.url = (_a = req.url) === null || _a === void 0 ? void 0 : _a.replace(/^\/api\//, '/api/v1/');
+                    req.url = (_a = req.url) === null || _a === void 0 ? void 0 : _a.replace(/^\/api\//, '/api/');
                     return http2_proxy_1.default.web(req, res, {
                         hostname: 'localhost',
                         port: 8000

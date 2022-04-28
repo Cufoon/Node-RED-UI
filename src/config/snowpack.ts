@@ -16,7 +16,7 @@ export const generateSnowpackConfig = (): SnowpackUserConfig => {
         src: '/api/.*',
         dest: (req, res) => {
           // remove /api prefix (optional)
-          req.url = req.url?.replace(/^\/api\//, '/api/v1/');
+          req.url = req.url?.replace(/^\/api\//, '/api/');
           return proxy.web(req, res, {
             hostname: 'localhost',
             port: 8000

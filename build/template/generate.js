@@ -11,22 +11,25 @@ const outlet_1 = require("./element/outlet");
 const page_1 = require("./element/page");
 const root_1 = require("./element/root");
 const state_1 = require("./element/state");
+const table_1 = require("./element/table");
 const box = {
     root: root_1.renderRoot,
     button: button_1.renderButton,
-    page: page_1.renderPage,
     card: card_1.renderCard,
-    divider: divider_1.renderDivider,
+    chartLine: chart_1.renderChartLine,
     col: grid_1.renderCol,
-    row: grid_1.renderRow,
+    divider: divider_1.renderDivider,
+    grid: grid_1.renderGrid,
     layout: layout_1.renderLayout,
-    layoutSider: layout_1.renderLayoutSider,
-    layoutHeader: layout_1.renderLayoutHeader,
     layoutContent: layout_1.renderLayoutContent,
     layoutFooter: layout_1.renderLayoutFooter,
-    state: state_1.renderStatefull,
-    outlet: outlet_1.renderOutlet,
+    layoutHeader: layout_1.renderLayoutHeader,
+    layoutSider: layout_1.renderLayoutSider,
     menu: menu_1.renderMenu,
-    chartLine: chart_1.renderChartLine
+    outlet: outlet_1.renderOutlet,
+    page: page_1.renderPage,
+    row: grid_1.renderRow,
+    state: state_1.renderStatefull,
+    table: table_1.renderTable
 };
 exports.default = box;

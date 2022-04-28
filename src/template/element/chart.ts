@@ -31,6 +31,9 @@ export const renderChartLine: RenderFunc = ({ element }) => {
       ${onClick && `onClick={${onClick}}`}
       datasetIdKey='id'
       data={${data}}
+      options={{
+        responsive: true
+      }}
     />
   `;
   return [result, null];

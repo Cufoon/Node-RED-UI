@@ -8,6 +8,8 @@ type StateUse =
       handler: [string, string][];
       request: [string[], string][];
       effect: [string[], string][];
+      free: [string[], string][];
+      static: [string[], string][];
     }
   | undefined;
 
@@ -45,7 +47,7 @@ export const renderStatefull: RenderFunc = ({ element, children }) => {
         item[0][2]
       }} = ${item[1].trimStart()}`;
     } else if (item[0].length === 1) {
-      request += `const ${item[0][0]} = async() => {
+      request += `const ${item[0][0]} = async(...args) => {
         ${item[1]}
       }`;
     } else {
@@ -65,13 +67,33 @@ export const renderStatefull: RenderFunc = ({ element, children }) => {
     `;
   });
 
+  let frees = '';
+  (element.option as StateUse)?.free?.map((item) => {
+    if (item[0].length > 0) {
+      frees += `const ${item[0][0]} = ${item[1]}`;
+    } else {
+      frees += `${item[1]}`;
+    }
+  });
+
+  let statics = '';
+  (element.option as StateUse)?.static?.map((item) => {
+    if (item[0].length > 0) {
+      statics += `const ${item[0][0]} = ${item[1]}`;
+    } else {
+      statics += `${item[1]}`;
+    }
+  });
+
   const result = `
+  ${statics.trim()}
   const ${element.id} = () => {
     ${useDispatch.trim()}
     ${useState.trim()}
     ${methods.trim()}
     ${request.trim()}
     ${effect.trim()}
+    ${frees.trim()}
     return (${expandChildStrListWithRoot(children, element)});
   }
   `;
