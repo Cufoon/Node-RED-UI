@@ -536,6 +536,23 @@ const mockElement = () => {
             onChange: 'onChange'
         }
     });
+    elements.set('State7', {
+        id: 'State7',
+        name: 'state',
+        path: 'gggggg',
+        option: {
+            list: ['date'],
+            handler: [['onChange', `console.log('onChange: ', args[0], args[1]);`]]
+        }
+    });
+    elements.set('DatePicker1', {
+        id: 'DatePicker1',
+        name: 'datePicker',
+        path: '',
+        option: {
+            onChange: 'onChange'
+        }
+    });
     elements.set('Card4', {
         id: 'Card4',
         name: 'card',
@@ -569,9 +586,10 @@ const mockElement = () => {
     elementsMap.set('State3', ['Part5']);
     elementsMap.set('State4', ['Part6']);
     elementsMap.set('PageElementB', ['Card4']);
-    elementsMap.set('Card4', ['State6', 'State5']);
+    elementsMap.set('Card4', ['State6', 'State7', 'State5']);
     elementsMap.set('State5', ['Table1']);
     elementsMap.set('State6', ['Select1']);
+    elementsMap.set('State7', ['DatePicker1']);
     return [elements, elementsMap];
 };
 exports.mockElement = mockElement;

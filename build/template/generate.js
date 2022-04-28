@@ -9,6 +9,7 @@ const layout_1 = require("./element/layout");
 const menu_1 = require("./element/menu");
 const outlet_1 = require("./element/outlet");
 const page_1 = require("./element/page");
+const picker_1 = require("./element/picker");
 const root_1 = require("./element/root");
 const select_1 = require("./element/select");
 const state_1 = require("./element/state");
@@ -32,6 +33,7 @@ const box = {
     row: grid_1.renderRow,
     state: state_1.renderStatefull,
     table: table_1.renderTable,
-    select: select_1.renderSelect
+    select: select_1.renderSelect,
+    datePicker: picker_1.renderRangePicker
 };
 exports.default = box;
