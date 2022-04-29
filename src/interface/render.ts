@@ -1,12 +1,6 @@
 import type { ElementBuildData } from './element';
 
-export interface RenderOptions {
-  hasChildren: boolean;
-  niceName?: string;
-}
-
 interface RenderParams {
-  option: RenderOptions;
   element: ElementBuildData;
   children?: string[];
 }

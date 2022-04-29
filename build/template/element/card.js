@@ -6,8 +6,11 @@ const renderCard = ({ element, children }) => {
     const result = `
     <Card
     ${(0, util_1.generateStyleAndClass)(element)}
-    ${(0, util_1.expandOptions)(element.option, ['onClick', 'title'])}>
+    ${(0, util_1.expandOptions)(element.option, ['onClick', 'title'])}
+    >
+    <Space style={{width: '100%'}} direction='vertical'>
     ${(0, util_1.expandChildStrList)(children, element)}
+    </Space>
     </Card>
   `;
     return [result, null];

@@ -10,8 +10,8 @@ const file_1 = require("./util/file");
 const generateFile = ({ elements, elementsMap, routes, routesMap }) => {
     try {
         const importation = (0, lib_1.generateImportation)();
-        const store = (0, store_1.generateStore)();
-        const generatedBody = (0, body_1.generateBody)(elementsMap, elements, 'root');
+        const [generatedBody, storeDefault] = (0, body_1.generateBody)(elementsMap, elements, 'root');
+        const store = (0, store_1.generateStore)(storeDefault);
         const appRender = (0, app_1.generateAppRender)('app');
         const generatedRoutes = (0, route_1.generateRoute)(routesMap, routes, 'root');
         (0, file_1.writeToFile)(importation);

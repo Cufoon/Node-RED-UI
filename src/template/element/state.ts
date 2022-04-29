@@ -3,7 +3,7 @@ import { expandChildStrListWithRoot, getStatePathId } from '$template/util';
 
 type StateUse =
   | {
-      list: string[];
+      list: [string, unknown][];
       state: [string, unknown][];
       handler: [string, string][];
       request: [string[], string][];
@@ -17,10 +17,10 @@ export const renderStatefull: RenderFunc = ({ element, children }) => {
   const useDispatch = 'const dispatch = useDispatch();\n';
   let useState = '';
   (element.option as StateUse)?.list?.map((item) => {
-    const key = getStatePathId(element.path, item);
+    const key = getStatePathId(element.path, item[0]);
     useState += `
-    const ${item} = useSelector(store => store['${key}']);
-    const set_${item} = (v) => {
+    const ${item[0]} = useSelector(store => store['${key}']);
+    const set_${item[0]} = (v) => {
       dispatch({
         key: '${key}',
         value: v

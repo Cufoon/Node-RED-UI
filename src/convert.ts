@@ -23,8 +23,8 @@ export const generateFile: Func = ({
 }) => {
   try {
     const importation = generateImportation();
-    const store = generateStore();
-    const generatedBody = generateBody(elementsMap, elements, 'root');
+    const [generatedBody, storeDefault] = generateBody(elementsMap, elements, 'root');
+    const store = generateStore(storeDefault);
     const appRender = generateAppRender('app');
     const generatedRoutes = generateRoute(routesMap, routes, 'root');
 

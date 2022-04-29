@@ -7,10 +7,10 @@ const renderStatefull = ({ element, children }) => {
     const useDispatch = 'const dispatch = useDispatch();\n';
     let useState = '';
     (_b = (_a = element.option) === null || _a === void 0 ? void 0 : _a.list) === null || _b === void 0 ? void 0 : _b.map((item) => {
-        const key = (0, util_1.getStatePathId)(element.path, item);
+        const key = (0, util_1.getStatePathId)(element.path, item[0]);
         useState += `
-    const ${item} = useSelector(store => store['${key}']);
-    const set_${item} = (v) => {
+    const ${item[0]} = useSelector(store => store['${key}']);
+    const set_${item[0]} = (v) => {
       dispatch({
         key: '${key}',
         value: v

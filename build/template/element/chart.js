@@ -27,7 +27,8 @@ const renderChartLine = ({ element }) => {
       datasetIdKey='id'
       data={${data}}
       options={{
-        responsive: true
+        responsive: true,
+        animation: false
       }}
     />
   `;

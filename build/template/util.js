@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.expandOptions = exports.expandChildStrListWithRoot = exports.expandChildStrList = exports.getStatePathId = exports.generateStyleAndClass = void 0;
+exports.expandOptions2Object = exports.expandOptions = exports.expandChildStrListWithRoot = exports.expandChildStrList = exports.getStatePathId = exports.generateStyleAndClass = void 0;
 const check_1 = require("../util/check");
 const generateStyleAndClass = (element) => {
     let result = '';
@@ -55,3 +55,17 @@ const expandOptions = (options, ps) => {
     return result;
 };
 exports.expandOptions = expandOptions;
+const expandOptions2Object = (options, name, ps) => {
+    let result = '';
+    options &&
+        ps.forEach((item) => {
+            if (Object.prototype.hasOwnProperty.call(options, item)) {
+                result += `${item}: ${options[item]},`;
+            }
+        });
+    if (result !== '') {
+        result = ` ${name}={{${result}}}`;
+    }
+    return result;
+};
+exports.expandOptions2Object = expandOptions2Object;

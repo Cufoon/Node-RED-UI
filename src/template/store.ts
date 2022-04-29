@@ -1,5 +1,6 @@
-export const generateStore = () => `
-const initialState = {};
+export const generateStore = (v: object) => {
+  return `
+const initialState = ${JSON.stringify(v)};
 
 const notRealized = (action) => {
   console.log('your action is', action);
@@ -58,3 +59,4 @@ const GlobalStateComponent = ({ children }) => {
   );
 };
 `;
+};

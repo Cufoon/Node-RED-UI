@@ -8,18 +8,26 @@ export const renderSelect: RenderFunc = ({ element }) => {
     options += `<Select.Option key={${item.value}} value={${item.value}}>${item.text}</Select.Option>`;
   });
 
+  const labelRequired =
+    (element.option?.required && `<span style={{color: 'red'}}>*</span>`) || '';
+
+  const label = `<div>${labelRequired}${element.option?.label}</div>`;
+
   const result = `
-    <Select
-    ${generateStyleAndClass(element)}
-    ${expandOptions(element.option, [
-      'defaultValue',
-      'value',
-      'options',
-      'onChange'
-    ])}
-    >
-    ${options}
-    </Select>
+    <Space>
+      ${(element.option?.label && label) || ''}
+      <Select
+        ${generateStyleAndClass(element)}
+        ${expandOptions(element.option, [
+          'defaultValue',
+          'value',
+          'options',
+          'onChange'
+        ])}
+      >
+        ${options}
+      </Select>
+    </Space>
   `;
   return [result, null];
 };

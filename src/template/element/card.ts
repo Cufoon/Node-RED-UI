@@ -9,8 +9,11 @@ export const renderCard: RenderFunc = ({ element, children }) => {
   const result = `
     <Card
     ${generateStyleAndClass(element)}
-    ${expandOptions(element.option, ['onClick', 'title'])}>
+    ${expandOptions(element.option, ['onClick', 'title'])}
+    >
+    <Space style={{width: '100%'}} direction='vertical'>
     ${expandChildStrList(children, element)}
+    </Space>
     </Card>
   `;
   return [result, null];

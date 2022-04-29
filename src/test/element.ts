@@ -78,7 +78,7 @@ export const mockElement = (): [
     name: 'state',
     path: 'app-page-a-state1',
     option: {
-      list: ['aaa'],
+      list: [['aaa', 0]],
       handler: [
         ['upup', 'set_aaa(aaa + 1)'],
         ['init', 'set_aaa(0)']
@@ -92,7 +92,7 @@ export const mockElement = (): [
     name: 'state',
     path: 'app-page-a-state2',
     option: {
-      list: ['chart'],
+      list: [['chart', '[]']],
       state: [
         ['temperature', '[]'],
         ['timer', 0]
@@ -166,7 +166,7 @@ export const mockElement = (): [
     name: 'state',
     path: 'app-page-a-state3',
     option: {
-      list: ['chart'],
+      list: [['chart', '[]']],
       state: [
         ['humidity', '[]'],
         ['timer', 0]
@@ -240,7 +240,7 @@ export const mockElement = (): [
     name: 'state',
     path: 'app-page-a-state4',
     option: {
-      list: ['chart'],
+      list: [['chart', '[]']],
       state: [
         ['lightness', '[]'],
         ['timer', 0]
@@ -352,7 +352,7 @@ export const mockElement = (): [
   elements.set('Part5', {
     id: 'Part5',
     name: 'chartLine',
-    path: 'app-page-a-state3-part5',
+    path: 'app-page-history-xxxx',
     option: {
       chart: {
         data: 'chart',
@@ -465,9 +465,15 @@ export const mockElement = (): [
   elements.set('State5', {
     id: 'State5',
     name: 'state',
-    path: 'ggggggggggggg',
+    path: 'app-page-history',
     option: {
-      state: [['tableData', '[]']],
+      list: [['swr', 0], ['startDate'], ['endDate'], ['checkedType']],
+      state: [
+        ['tableData', '[]'],
+        ['currentPage', 1],
+        ['pageSize', 25],
+        ['totalMount', 0]
+      ],
       request: [
         [
           ['loading', 'error', 'data'],
@@ -475,11 +481,13 @@ export const mockElement = (): [
           useRequest('/api/v1/history/data',{
             method: 'post',
             data: {
-              dataType: 2,
-              dateStart: Date.now() - 50000000,
-              dateEnd: Date.now()
+              dataType: checkedType,
+              dateStart: dayjs(startDate).toISOString(),
+              dateEnd: dayjs(endDate).toISOString(),
+              pageSize: pageSize,
+              page: currentPage
             },
-            loadingText: '加载温度中',
+            loadingText: '加载历史数据中',
             success: (res) => {
               // set_lightness(res.lightness);
               console.log('request success');
@@ -487,7 +495,21 @@ export const mockElement = (): [
             fail: (err) => {
               GlobalMessage.error(err)
             }
-          },[])
+          },[swr])
+          `
+        ]
+      ],
+      handler: [
+        [
+          'onPageChanged',
+          `
+          set_currentPage(args[0]);
+          set_pageSize(args[1]);
+          if(swr > 99999) {
+            set_swr(0);
+          } else {
+            set_swr(swr+1);
+          }
           `
         ]
       ],
@@ -502,7 +524,9 @@ export const mockElement = (): [
               key: index
             }
           });
+          const total = data?.total || 0;
           set_tableData(addedKey || []);
+          set_totalMount(total);
           `
         ]
       ]
@@ -512,7 +536,7 @@ export const mockElement = (): [
   elements.set('Table1', {
     id: 'Table1',
     name: 'table',
-    path: 'vbhjasbvhsbv',
+    path: 'app-page-history',
     option: {
       columns: `[
         {title: '设备', dataIndex: 'deviceID'},
@@ -521,16 +545,28 @@ export const mockElement = (): [
       ]`,
       data: 'tableData',
       loading: 'loading',
-      stripe: 'true'
+      stripe: 'true',
+      pagination: {
+        showTotal: 'true',
+        sizeCanChange: 'true',
+        sizeOptions: '[25,50,100,200]',
+        showJumper: 'true',
+        onChange: 'onPageChanged',
+        defaultPageSize: 'pageSize',
+        defaultCurrent: 'currentPage',
+        total: 'totalMount',
+        pageSize: 'pageSize',
+        current: 'currentPage'
+      }
     }
   });
 
   elements.set('State6', {
     id: 'State6',
     name: 'state',
-    path: 'ggggggggggggg',
+    path: 'app-page-history',
     option: {
-      list: ['checkedType'],
+      list: [['checkedType', 1]],
       handler: [
         [
           'onChange',
@@ -549,7 +585,9 @@ export const mockElement = (): [
     name: 'select',
     path: '',
     option: {
-      defaultValue: `'ddddddd'`,
+      label: '数据类别',
+      required: true,
+      defaultValue: 1,
       value: 'checkedType',
       select_options: [
         { value: 1, text: '光照' },
@@ -563,10 +601,22 @@ export const mockElement = (): [
   elements.set('State7', {
     id: 'State7',
     name: 'state',
-    path: 'gggggg',
+    path: 'app-page-history',
     option: {
-      list: ['date'],
-      handler: [['onChange', `console.log('onChange: ', args[0], args[1]);`]]
+      list: [
+        ['startDate', 'default'],
+        ['endDate', 'default']
+      ],
+      handler: [
+        [
+          'onChange',
+          `
+          console.log('onChange: ', args[0], args[1]);
+          set_startDate(args[0][0]);
+          set_endDate(args[0][1]);
+          `
+        ]
+      ]
     }
   });
 
@@ -575,8 +625,51 @@ export const mockElement = (): [
     name: 'datePicker',
     path: '',
     option: {
+      label: '选择时间',
+      required: true,
       onChange: 'onChange'
     }
+  });
+
+  elements.set('Row2', {
+    id: 'Row2',
+    name: 'row',
+    path: 'app=page-b-row1',
+    option: {
+      justify: `'space-between'`,
+      align: `'stretch'`
+    }
+  });
+
+  elements.set('State8', {
+    id: 'State8',
+    name: 'state',
+    path: 'app-page-history',
+    option: {
+      list: [['swr', 0]],
+      handler: [
+        [
+          'onClick',
+          `
+          if(swr === undefined || swr === null || swr > 999999) {
+            set_swr(0);
+          } else {
+            set_swr(swr+1);
+          }
+          `
+        ]
+      ]
+    }
+  });
+
+  elements.set('Button1', {
+    id: 'Button1',
+    name: 'button',
+    path: 'app-page-history',
+    option: {
+      onClick: 'onClick'
+    },
+    content: { text: '查询' }
   });
 
   elements.set('Card4', {
@@ -613,9 +706,11 @@ export const mockElement = (): [
   elementsMap.set('State3', ['Part5']);
   elementsMap.set('State4', ['Part6']);
   elementsMap.set('PageElementB', ['Card4']);
-  elementsMap.set('Card4', ['State6', 'State7', 'State5']);
+  elementsMap.set('Card4', ['Row2', 'State5']);
+  elementsMap.set('Row2', ['State6', 'State7', 'State8']);
   elementsMap.set('State5', ['Table1']);
   elementsMap.set('State6', ['Select1']);
   elementsMap.set('State7', ['DatePicker1']);
+  elementsMap.set('State8', ['Button1']);
   return [elements, elementsMap];
 };

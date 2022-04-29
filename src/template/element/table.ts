@@ -1,5 +1,9 @@
 import { RenderFunc } from '$interface/render';
-import { generateStyleAndClass, expandOptions } from '$template/util';
+import {
+  generateStyleAndClass,
+  expandOptions,
+  expandOptions2Object
+} from '$template/util';
 
 export const renderTable: RenderFunc = ({ element }) => {
   const result = `
@@ -12,8 +16,19 @@ export const renderTable: RenderFunc = ({ element }) => {
       'noDataElement',
       'stripe',
       'size',
-      'pagination',
       'pagePosition'
+    ])}
+    ${expandOptions2Object(element.option?.pagination, 'pagination', [
+      'showTotal',
+      'sizeCanChange',
+      'sizeOptions',
+      'showJumper',
+      'onChange',
+      'defaultPageSize',
+      'defaultCurrent',
+      'total',
+      'pageSize',
+      'current'
     ])}
     />
   `;

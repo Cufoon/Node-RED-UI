@@ -35,7 +35,7 @@ export const generateIndexHtml = (title = 'Node-RED Web') => {
       <title>${title}</title>
     </head>
     <body>
-      <div id="app"></div>
+      <div id="app" style="background-color: #f0f0f0; min-height: 100vh;"></div>
       <script type="module" src="/dist/index.js"></script>
     </body>
   </html>

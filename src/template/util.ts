@@ -60,3 +60,21 @@ export const expandOptions = (
   }
   return result;
 };
+
+export const expandOptions2Object = (
+  options: { [index: string]: unknown } | undefined,
+  name: string,
+  ps: string[]
+) => {
+  let result = '';
+  options &&
+    ps.forEach((item) => {
+      if (Object.prototype.hasOwnProperty.call(options, item)) {
+        result += `${item}: ${options[item]},`;
+      }
+    });
+  if (result !== '') {
+    result = ` ${name}={{${result}}}`;
+  }
+  return result;
+};

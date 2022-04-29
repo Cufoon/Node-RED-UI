@@ -1,8 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateStore = void 0;
-const generateStore = () => `
-const initialState = {};
+const generateStore = (v) => {
+    return `
+const initialState = ${JSON.stringify(v)};
 
 const notRealized = (action) => {
   console.log('your action is', action);
@@ -61,4 +62,5 @@ const GlobalStateComponent = ({ children }) => {
   );
 };
 `;
+};
 exports.generateStore = generateStore;
