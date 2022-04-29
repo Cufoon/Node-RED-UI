@@ -80,6 +80,7 @@ export const renderMenu: RenderFunc = () => {
           menuPathMap.current.set(item.key, item.path || '404');
           return (
             <Menu.Item key={item.key} data-qnxgpath={item.path}>
+              {item.icon}
               {item.name}
             </Menu.Item>
           );
@@ -90,7 +91,7 @@ export const renderMenu: RenderFunc = () => {
 
       return inited ? (
         <Menu
-          theme='light'
+          theme='dark'
           mode='vertical'
           levelIndent={12}
           selectedKeys={selectedKeys}

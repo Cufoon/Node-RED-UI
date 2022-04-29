@@ -12,12 +12,13 @@ export const generateStyleAndClass = (element: ElementBuildData): string => {
   }
   if (element.style) {
     const style = element.style.replace(/\\n/g, '');
-    result += ` style="${style}"`;
+    result += ` style={${style}}`;
   }
   return result;
 };
 
-export const getStatePathId = (p: string, k: string): string => `${p}-${k}`;
+export const getStatePathId = (p: string | undefined, k: string): string =>
+  `${p || ''}-${k}`;
 
 export const expandChildStrList = (
   p: string[] | undefined,

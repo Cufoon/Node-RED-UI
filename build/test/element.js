@@ -72,15 +72,379 @@ const mockElement = () => {
     elements.set('State1', {
         id: 'State1',
         name: 'state',
-        path: 'app-page-a-state1',
+        path: 'app-page-manage',
         option: {
-            list: [['aaa', 0]],
-            handler: [
-                ['upup', 'set_aaa(aaa + 1)'],
-                ['init', 'set_aaa(0)']
+            state: [
+                ['loading', 'false'],
+                ['deviceList', '[]'],
+                ['currentPage', 1],
+                ['pageSize', 25],
+                ['totalMount', 0],
+                ['nowAtDeviceID', 'null'],
+                ['modalVisible', 'false'],
+                ['switch1checked', 'false'],
+                ['switch2checked', 'false'],
+                ['setFanLevel', 0],
+                ['setFanTime', 0],
+                ['setFanTemLimit', 0],
+                ['setFanHumLimit', 0],
+                ['setLightLevel', 0],
+                ['setLightTime', 0],
+                ['setLightTemLimit', 0],
+                ['setLightHumLimit', 0],
+                ['modalLoading', 'false']
             ],
-            effect: [[[], 'init()']]
+            handler: [
+                [
+                    'onPageChanged',
+                    `
+          set_currentPage(args[0]);
+          set_pageSize(args[1]);
+          `
+                ],
+                [
+                    'openModal',
+                    `
+          console.log(args);
+          set_nowAtDeviceID(args[0]?.deviceID);
+          set_modalVisible(true);
+          `
+                ],
+                [
+                    'modalOK',
+                    `
+          console.log(nowAtDeviceID, 'modal OK');
+          sendDeviceControl();
+          `
+                ],
+                [
+                    'modalCancel',
+                    `
+          console.log(nowAtDeviceID, 'modal Fail');
+          set_modalVisible(false);
+          modalClear();
+          `
+                ],
+                [
+                    'modalClear',
+                    `
+          set_switch1checked(false);
+          set_switch2checked(false);
+          set_setFanLevel(0);
+          set_setFanTime(0);
+          set_setFanTemLimit(0);
+          set_setFanHumLimit(0);
+          set_setLightLevel(0);
+          set_setLightTime(0);
+          set_setLightTemLimit(0);
+          set_setLightHumLimit(0);
+          set_modalLoading(false);
+          `
+                ]
+            ],
+            effect: [[['currentPage', 'pageSize', 'totalMount'], 'getDeviceList()']],
+            request: [
+                [
+                    ['getDeviceList'],
+                    `
+          set_loading(true);
+          const [err, data] = await Utils.requestGetWithParam('/api/v1/device/online',{
+            _page: currentPage,
+            _limit: pageSize
+          })
+          set_loading(false);
+          if (err) {
+            GlobalMessage.error(err);
+          } else {
+            const dlst = data?.data?.map((item)=>{
+              return {
+                key: item.clientid,
+                deviceID: item.clientid,
+                time: item.connected_at
+              }
+            })
+            const total = data?.meta?.count || 0;
+            set_deviceList(dlst);
+            set_totalMount(total);
+          }
+          `
+                ],
+                [
+                    ['sendDeviceControl'],
+                    `
+          if(!(switch1checked || switch2checked)){
+            GlobalMessage.info('没有选择任何控制选项', 1);
+            return;
+          }
+          set_modalLoading(true);
+          let errCount = 0;
+          if(switch2checked){
+            const [err, data] = await Utils.requestPost('/api/v1/device/control',{
+              deviceID: nowAtDeviceID,
+              type: 1,
+              data: {
+              time: setLightTime,
+              value: setLightLevel,
+              tlimit: setLightTemLimit,
+              hlimit: setLightHumLimit
+            }
+            })
+            if (err) {
+              errCount++;
+              GlobalMessage.error(err);
+            } else {
+            }
+          }
+          if(switch1checked) {
+            const [err1, data1] = await Utils.requestPost('/api/v1/device/control',{
+              deviceID: nowAtDeviceID,
+              type: 2,
+              data: {
+                time: setFanTime,
+                value: setFanLevel,
+                tlimit: setFanTemLimit,
+                hlimit: setFanHumLimit
+              }
+            })
+            if (err1) {
+              errCount++;
+              GlobalMessage.error(err1);
+            } else {
+            }
+          }
+          set_modalLoading(false);
+          if(errCount === 0) {
+            set_modalVisible(false);
+            modalClear();
+            GlobalMessage.success('成功');
+          }
+          `
+                ]
+            ]
         }
+    });
+    elements.set('Table2', {
+        id: 'Table2',
+        name: 'table',
+        path: 'app-page-manage',
+        option: {
+            columns: `
+        {title: '设备', dataIndex: 'deviceID'},
+        {title: '连接时间', dataIndex: 'time'},
+      `,
+            columnsAction: [{ handler: 'openModal', text: '管理' }],
+            data: 'deviceList',
+            loading: 'loading',
+            stripe: 'true',
+            // pagePosition: `'tr'`,
+            pagination: {
+                showTotal: 'true',
+                sizeCanChange: 'true',
+                sizeOptions: '[25,50,100,200]',
+                showJumper: 'true',
+                onChange: 'onPageChanged',
+                defaultPageSize: 'pageSize',
+                defaultCurrent: 'currentPage',
+                total: 'totalMount',
+                pageSize: 'pageSize',
+                current: 'currentPage'
+            }
+        }
+    });
+    elements.set('Card5', {
+        id: 'Card5',
+        name: 'card',
+        path: 'app-page-a-state1-part1',
+        option: {
+            title: `'设备管理'`
+        },
+        content: { text: 'Card5' }
+    });
+    elements.set('Row3', {
+        id: 'Row3',
+        name: 'row',
+        path: 'app-page-a-state1-part2',
+        content: { text: 'Row3' }
+    });
+    elements.set('Col4', {
+        id: 'Col4',
+        name: 'col',
+        path: 'app-page-a-state1-part3',
+        content: { text: 'Col4' },
+        option: {
+            span: 2
+        }
+    });
+    elements.set('Button2', {
+        id: 'Button2',
+        name: 'button',
+        path: 'app-page-manage',
+        option: {
+            onClick: 'getDeviceList'
+        },
+        content: { text: '刷新设备列表' }
+    });
+    elements.set('Modal1', {
+        id: 'Modal1',
+        name: 'modal',
+        path: '',
+        option: {
+            title: `\`管理设备-\${nowAtDeviceID}\``,
+            onOk: 'modalOK',
+            onCancel: 'modalCancel',
+            visible: 'modalVisible',
+            okButtonProps: {
+                loading: 'modalLoading'
+            },
+            cancelButtonProps: {
+                disabled: 'modalLoading'
+            }
+        },
+        content: {
+            text: '我是一个弹出窗口'
+        }
+    });
+    elements.set('Switch1', {
+        id: 'Switch1',
+        name: 'switch',
+        path: '',
+        option: {
+            label: '设置风扇',
+            checked: 'switch1checked',
+            onChange: `(e)=>{
+        console.log('switch1checked to', e);
+        set_switch1checked(e);
+      }`
+        }
+    });
+    elements.set('Slider1', {
+        id: 'Slider1',
+        name: 'slider',
+        path: '',
+        style: `{width: '200px'}`,
+        option: {
+            label: '风扇转速',
+            min: 0,
+            max: 8,
+            showTicks: 'true',
+            value: 'setFanLevel',
+            onChange: `(e)=>{
+        console.log('setFanLevel to', e);
+        set_setFanLevel(e);
+      }`
+        }
+    });
+    elements.set('InputNumber5', {
+        id: 'InputNumber5',
+        name: 'inputNumber',
+        path: '',
+        option: {
+            label: '持续时长',
+            value: 'setFanTime',
+            onChange: `(e) => {
+        set_setFanTime(e);
+      }`
+        }
+    });
+    elements.set('InputNumber1', {
+        id: 'InputNumber1',
+        name: 'inputNumber',
+        path: '',
+        option: {
+            label: '温度阈值',
+            value: 'setFanTemLimit',
+            onChange: `(e) => {
+        set_setFanTemLimit(e);
+      }`
+        }
+    });
+    elements.set('InputNumber2', {
+        id: 'InputNumber2',
+        name: 'inputNumber',
+        path: '',
+        option: {
+            label: '湿度阈值',
+            value: 'setFanHumLimit',
+            onChange: `(e) => {
+        set_setFanHumLimit(e);
+      }`
+        }
+    });
+    elements.set('Switch2', {
+        id: 'Switch2',
+        name: 'switch',
+        path: '',
+        option: {
+            label: '设置光照',
+            checked: 'switch2checked',
+            onChange: `(e) => {
+        console.log('switch2checked to', e);
+        set_switch2checked(e);
+      }`
+        }
+    });
+    elements.set('Slider2', {
+        id: 'Slider2',
+        name: 'slider',
+        path: '',
+        style: `{width: '200px'}`,
+        option: {
+            label: '光照强度',
+            min: 0,
+            max: 8,
+            showTicks: 'true',
+            value: 'setLightLevel',
+            onChange: `(e)=>{
+        console.log('setLightLevel to', e);
+        set_setLightLevel(e);
+      }`
+        }
+    });
+    elements.set('InputNumber3', {
+        id: 'InputNumber3',
+        name: 'inputNumber',
+        path: '',
+        option: {
+            label: '温度阈值',
+            value: 'setLightTemLimit',
+            onChange: `(e) => {
+        set_setLightTemLimit(e);
+      }`
+        }
+    });
+    elements.set('InputNumber4', {
+        id: 'InputNumber4',
+        name: 'inputNumber',
+        path: '',
+        option: {
+            label: '湿度阈值',
+            value: 'setLightHumLimit',
+            onChange: `(e) => {
+        set_setLightHumLimit(e);
+      }`
+        }
+    });
+    elements.set('InputNumber6', {
+        id: 'InputNumber6',
+        name: 'inputNumber',
+        path: '',
+        option: {
+            label: '持续时长',
+            value: 'setLightTime',
+            onChange: `(e) => {
+        set_setLightTime(e);
+      }`
+        }
+    });
+    elements.set('Card6', {
+        id: 'Card6',
+        name: 'card',
+        path: ''
+    });
+    elements.set('Card7', {
+        id: 'Card7',
+        name: 'card',
+        path: ''
     });
     elements.set('State2', {
         id: 'State2',
@@ -301,28 +665,6 @@ const mockElement = () => {
             ]
         }
     });
-    elements.set('Part1', {
-        id: 'Part1',
-        name: 'card',
-        path: 'app-page-a-state1-part1',
-        content: { text: 'Part1' }
-    });
-    elements.set('Part2', {
-        id: 'Part2',
-        name: 'card',
-        path: 'app-page-a-state1-part2',
-        content: { text: 'Part2' },
-        option: {
-            onclick: 'upup',
-            content: 'aaa'
-        }
-    });
-    elements.set('Part3', {
-        id: 'Part3',
-        name: 'card',
-        path: 'app-page-a-state1-part3',
-        content: { text: 'Part3' }
-    });
     elements.set('Part4', {
         id: 'Part4',
         name: 'chartLine',
@@ -517,11 +859,11 @@ const mockElement = () => {
         name: 'table',
         path: 'app-page-history',
         option: {
-            columns: `[
+            columns: `
         {title: '设备', dataIndex: 'deviceID'},
         {title: '数值', dataIndex: 'value'},
-        {title: '时间', dataIndex: 'time'}
-      ]`,
+        {title: '时间', dataIndex: 'time'},
+      `,
             data: 'tableData',
             loading: 'loading',
             stripe: 'true',
@@ -662,7 +1004,25 @@ const mockElement = () => {
     elementsMap.set('AppSider', ['AppSiderMenu']);
     elementsMap.set('AppContent', ['AppContentOutlet']);
     elementsMap.set('PageElementC', ['State1']);
-    elementsMap.set('State1', ['Part1', 'Part2', 'Part3']);
+    elementsMap.set('State1', ['Card5']);
+    elementsMap.set('Card5', ['Row3', 'Table2', 'Modal1']);
+    elementsMap.set('Modal1', ['Card6', 'Card7']);
+    elementsMap.set('Card6', [
+        'Switch1',
+        'Slider1',
+        'InputNumber5',
+        'InputNumber1',
+        'InputNumber2'
+    ]);
+    elementsMap.set('Card7', [
+        'Switch2',
+        'Slider2',
+        'InputNumber6',
+        'InputNumber3',
+        'InputNumber4'
+    ]);
+    elementsMap.set('Row3', ['Col4']);
+    elementsMap.set('Col4', ['Button2']);
     elementsMap.set('PageElementA', ['Grid1']);
     elementsMap.set('Grid1', ['Row1']);
     elementsMap.set('Row1', ['Col1', 'Col2', 'Col3']);

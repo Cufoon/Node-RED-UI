@@ -4,6 +4,7 @@ import { renderCard } from './element/card';
 import { renderChartLine } from './element/chart';
 import { renderDivider } from './element/divider';
 import { renderCol, renderGrid, renderRow } from './element/grid';
+import { renderInputNumber, renderSlider, renderSwitch } from './element/input';
 import {
   renderLayout,
   renderLayoutContent,
@@ -12,6 +13,7 @@ import {
   renderLayoutSider
 } from './element/layout';
 import { renderMenu } from './element/menu';
+import { renderModal } from './element/modal';
 import { renderOutlet } from './element/outlet';
 import { renderPage } from './element/page';
 import { renderRangePicker } from './element/picker';
@@ -44,7 +46,11 @@ const box: TemplateFuncList = {
   state: renderStatefull,
   table: renderTable,
   select: renderSelect,
-  datePicker: renderRangePicker
+  datePicker: renderRangePicker,
+  modal: renderModal,
+  inputNumber: renderInputNumber,
+  slider: renderSlider,
+  switch: renderSwitch
 };
 
 export default box;

@@ -31,15 +31,15 @@ const renderStatefull = ({ element, children }) => {
     let request = '';
     (_h = (_g = element.option) === null || _g === void 0 ? void 0 : _g.request) === null || _h === void 0 ? void 0 : _h.map((item) => {
         if (item[0].length > 1) {
-            request += `const {loading: ${item[0][0]}, error: ${item[0][1]}, data: ${item[0][2]}} = ${item[1].trimStart()}`;
+            request += `const {loading: ${item[0][0]}, error: ${item[0][1]}, data: ${item[0][2]}} = ${item[1].trimStart()};`;
         }
         else if (item[0].length === 1) {
             request += `const ${item[0][0]} = async(...args) => {
         ${item[1]}
-      }`;
+      };`;
         }
         else {
-            request += `${item[1]}`;
+            request += `${item[1]};`;
         }
     });
     let effect = '';

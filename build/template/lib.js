@@ -8,7 +8,7 @@ const content = `
 import React, { createContext, useReducer, useContext, useEffect, useRef, useState, useCallback, useMemo } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Route, Routes, Outlet, useNavigate, useLocation } from 'react-router-dom';
-import { Card, Layout, Button, Menu, Message, Grid, Table, Select, DatePicker, Space } from '@arco-design/web-react';
+import { Card, Layout, Button, Menu, Message, Grid, Table, Select, DatePicker, Space, Modal, Switch, InputNumber, Slider } from '@arco-design/web-react';
 import { IconStar } from '@arco-design/web-react/icon';
 import umiRequest from 'umi-request';
 import qs from 'qs';
@@ -39,24 +39,20 @@ Cufoon.PageMenuData = [
   {
     name: '实时数据',
     key: 'menu-active-data',
-    path: 'pageA'
+    path: 'pageA',
+    icon: <IconStar />
   },
   {
-    name: '测试选项',
-    key: 'group-menu-test',
-    icon: <IconStar />,
-    children: [
-      {
-        name: '历史数据',
-        key: 'menu-fresh-manage-signup',
-        path: 'pageB'
-      },
-      {
-        name: '设备管理',
-        key: 'menu-fresh-manage-interview',
-        path: 'pageC'
-      }
-    ]
+    name: '历史数据',
+    key: 'menu-fresh-manage-signup',
+    path: 'pageB',
+    icon: <IconStar />
+  },
+  {
+    name: '设备管理',
+    key: 'menu-fresh-manage-interview',
+    path: 'pageC',
+    icon: <IconStar />
   }
 ];
 `;

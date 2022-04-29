@@ -45,13 +45,13 @@ export const renderStatefull: RenderFunc = ({ element, children }) => {
     if (item[0].length > 1) {
       request += `const {loading: ${item[0][0]}, error: ${item[0][1]}, data: ${
         item[0][2]
-      }} = ${item[1].trimStart()}`;
+      }} = ${item[1].trimStart()};`;
     } else if (item[0].length === 1) {
       request += `const ${item[0][0]} = async(...args) => {
         ${item[1]}
-      }`;
+      };`;
     } else {
-      request += `${item[1]}`;
+      request += `${item[1]};`;
     }
   });
 

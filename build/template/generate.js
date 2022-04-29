@@ -5,8 +5,10 @@ const card_1 = require("./element/card");
 const chart_1 = require("./element/chart");
 const divider_1 = require("./element/divider");
 const grid_1 = require("./element/grid");
+const input_1 = require("./element/input");
 const layout_1 = require("./element/layout");
 const menu_1 = require("./element/menu");
+const modal_1 = require("./element/modal");
 const outlet_1 = require("./element/outlet");
 const page_1 = require("./element/page");
 const picker_1 = require("./element/picker");
@@ -34,6 +36,10 @@ const box = {
     state: state_1.renderStatefull,
     table: table_1.renderTable,
     select: select_1.renderSelect,
-    datePicker: picker_1.renderRangePicker
+    datePicker: picker_1.renderRangePicker,
+    modal: modal_1.renderModal,
+    inputNumber: input_1.renderInputNumber,
+    slider: input_1.renderSlider,
+    switch: input_1.renderSwitch
 };
 exports.default = box;

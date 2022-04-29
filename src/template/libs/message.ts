@@ -1,4 +1,9 @@
 export const messageLib = `
+Message.config({
+  maxCount: 4,
+  duration: 1350
+})
+
 class MessageLoading {
   constructor(id) {
     this.closeHandler = null;
@@ -68,10 +73,10 @@ const createMessageLoading = (id) => {
 
 const convertMessageFunc = (fn) => {
   return (content, duration, onClose) => {
-    fn({
+    fn.call(Message, {
       content,
       className: 'custom-antd-message-style',
-      duration: duration ?? 2,
+      duration: (duration ?? 1.3) * 1000,
       onClose
     });
   };

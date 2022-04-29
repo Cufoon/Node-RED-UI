@@ -14,12 +14,12 @@ const generateStyleAndClass = (element) => {
     }
     if (element.style) {
         const style = element.style.replace(/\\n/g, '');
-        result += ` style="${style}"`;
+        result += ` style={${style}}`;
     }
     return result;
 };
 exports.generateStyleAndClass = generateStyleAndClass;
-const getStatePathId = (p, k) => `${p}-${k}`;
+const getStatePathId = (p, k) => `${p || ''}-${k}`;
 exports.getStatePathId = getStatePathId;
 const expandChildStrList = (p, e) => {
     var _a, _b;
