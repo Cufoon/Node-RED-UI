@@ -36,9 +36,28 @@
   },
   "node-red": {
     "nodes": {
-      "sample": "nodes/sample/sample.js",
-      "new-site": "nodes/new-site/new-site.js",
-      "ui-text": "nodes/ui-text/ui-text.js"
+      "site": "nodes/site/index.js",
+      "page": "nodes/page/index.js",
+      "layout": "nodes/layout/index.js",
+      "layout-header": "nodes/layoutHeader/index.js",
+      "layout-Sider": "nodes/layoutSider/index.js",
+      "layout-Footer": "nodes/layoutFooter/index.js",
+      "menu": "nodes/menu/index.js",
+      "outlet": "nodes/outlet/index.js",
+      "state": "nodes/state/index.js",
+      "table": "nodes/table/index.js",
+      "card": "nodes/card/index.js",
+      "row": "nodes/row/index.js",
+      "col": "nodes/col/index.js",
+      "button": "nodes/button/index.js",
+      "modal": "nodes/modal/index.js",
+      "switch": "nodes/switch/index.js",
+      "slider": "nodes/slider/index.js",
+      "input-number": "nodes/inputNumber/index.js",
+      "chart-line": "nodes/chartLine/index.js",
+      "grid": "nodes/grid/index.js",
+      "select": "nodes/select/index.js",
+      "date-picker": "nodes/datePicker/index.js"
     }
   }
 }

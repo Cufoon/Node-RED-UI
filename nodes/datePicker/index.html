@@ -1,0 +1,61 @@
+<script type="text/javascript">
+  RED.nodes.registerType('datePicker', {
+    category: '自定义Cufoon',
+    color: '#a6bbcf',
+    defaults: {
+      cufoon_id: {
+        value: '',
+        required: true,
+        validate: RED.validators.regex(/^[A-Z][a-zA-Z0-9]*$/)
+      },
+      cufoon_parent: { value: '' },
+      cufoon_default_content: { value: '' },
+      cufoon_option: { value: '{}' }
+    },
+    inputs: 1,
+    outputs: 1,
+    // icon: 'file.png',
+    label: function () {
+      return this.cufoon_id || 'datePicker';
+    },
+    oneditprepare: function () {
+      $('#node-input-cufoon_option').typedInput({
+        type: 'json',
+        types: ['json']
+      });
+    }
+  });
+</script>
+
+<script type="text/html" data-template-name="datePicker">
+  <div class="form-row">
+    <label for="node-input-cufoon_id"><i class="fa fa-tag"></i>唯一id</label>
+    <input
+      type="text"
+      id="node-input-cufoon_id"
+      placeholder="只能为字母和数字且首字母大写"
+    />
+  </div>
+  <div class="form-row">
+    <label for="node-input-cufoon_parent"
+      ><i class="fa fa-tag"></i>上级唯一id</label
+    >
+    <input type="text" id="node-input-cufoon_parent" placeholder="root" />
+  </div>
+  <div class="form-row">
+    <label for="node-input-cufoon_default_content"
+      ><i class="fa fa-tag"></i>默认内容</label
+    >
+    <input
+      type="text"
+      id="node-input-cufoon_default_content"
+      placeholder="root"
+    />
+  </div>
+  <div class="form-row">
+    <label for="node-input-cufoon_option"
+      ><i class="fa fa-tag"></i>列属性设置</label
+    >
+    <input type="text" id="node-input-cufoon_option" placeholder="root" />
+  </div>
+</script>

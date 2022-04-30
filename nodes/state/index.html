@@ -1,0 +1,137 @@
+<script type="text/javascript">
+  RED.nodes.registerType('state', {
+    category: '自定义Cufoon',
+    color: '#a6bbcf',
+    defaults: {
+      cufoon_id: {
+        value: '',
+        required: true,
+        validate: RED.validators.regex(/^[A-Z][a-zA-Z0-9]*$/)
+      },
+      cufoon_parent: { value: '' },
+      cufoon_default_content: { value: '' },
+      cufoon_state_list: { value: [] },
+      cufoon_state_namespace: { value: 'root' },
+      cufoon_state_global_list: { value: [] },
+      cufoon_state_handler_list: { value: [] },
+      cufoon_state_effect_list: { value: [] },
+      cufoon_state_request_list: { value: [] }
+    },
+    inputs: 1,
+    outputs: 1,
+    // icon: 'file.png',
+    label: function () {
+      return this.cufoon_id || 'state';
+    },
+    oneditprepare: function () {
+      $('#node-input-cufoon_state_list').typedInput({
+        type: 'json',
+        types: ['json']
+      });
+      $('#node-input-cufoon_state_global_list').typedInput({
+        type: 'json',
+        types: ['json']
+      });
+      $('#node-input-cufoon_state_handler_list').typedInput({
+        type: 'json',
+        types: ['json']
+      });
+      $('#node-input-cufoon_state_effect_list').typedInput({
+        type: 'json',
+        types: ['json']
+      });
+      $('#node-input-cufoon_state_request_list').typedInput({
+        type: 'json',
+        types: ['json']
+      });
+    }
+  });
+</script>
+
+<script type="text/html" data-template-name="state">
+  <div class="form-row">
+    <label for="node-input-cufoon_id"><i class="fa fa-tag"></i>唯一id</label>
+    <input
+      type="text"
+      id="node-input-cufoon_id"
+      placeholder="只能为字母和数字且首字母大写"
+    />
+  </div>
+  <div class="form-row">
+    <label for="node-input-cufoon_parent"
+      ><i class="fa fa-tag"></i>上级唯一id</label
+    >
+    <input
+      type="text"
+      id="node-input-cufoon_parent"
+      placeholder="未指定即为前一个结点的上级id"
+    />
+  </div>
+  <div class="form-row">
+    <label for="node-input-cufoon_default_content"
+      ><i class="fa fa-tag"></i>默认内容</label
+    >
+    <input type="text" id="node-input-cufoon_default_content" placeholder="" />
+  </div>
+  <div class="form-row">
+    <label for="node-input-cufoon_state_list"
+      ><i class="fa fa-tag"></i>局部状态列表</label
+    >
+    <input type="text" id="node-input-cufoon_state_list" placeholder="[]" />
+  </div>
+  <div class="form-row">
+    <label for="node-input-cufoon_state_namespace"
+      ><i class="fa fa-tag"></i>全局状态命名空间</label
+    >
+    <input
+      type="text"
+      id="node-input-cufoon_state_namespace"
+      placeholder="root"
+      value="root"
+    />
+  </div>
+  <div class="form-row">
+    <label for="node-input-cufoon_state_global_list"
+      ><i class="fa fa-tag"></i>全局状态列表</label
+    >
+    <input
+      type="text"
+      id="node-input-cufoon_state_global_list"
+      placeholder="[]"
+      value="[]"
+    />
+  </div>
+  <div class="form-row">
+    <label for="node-input-cufoon_state_handler_list"
+      ><i class="fa fa-tag"></i>方法列表</label
+    >
+    <input
+      type="text"
+      id="node-input-cufoon_state_handler_list"
+      placeholder="[]"
+      value="[]"
+    />
+  </div>
+  <div class="form-row">
+    <label for="node-input-cufoon_state_request_list"
+      ><i class="fa fa-tag"></i>请求方法列表</label
+    >
+    <input
+      type="text"
+      id="node-input-cufoon_state_request_list"
+      placeholder="[]"
+      value="[]"
+    />
+  </div>
+  <div class="form-row">
+    <label for="node-input-cufoon_state_effect_list"
+      ><i class="fa fa-tag"></i>副作用列表</label
+    >
+    <input
+      type="text"
+      id="node-input-cufoon_state_effect_list"
+      placeholder="[]"
+      value="[]"
+    />
+  </div>
+</script>

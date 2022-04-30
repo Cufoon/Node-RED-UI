@@ -22,7 +22,9 @@ module.exports = {
   rules: {
     'no-this-alias': 0,
     'react/prop-types': 0,
-    '@typescript-eslint/no-explicit-any': 0
+    '@typescript-eslint/no-explicit-any': 0,
+    '@typescript-eslint/no-this-alias': 0,
+    '@typescript-eslint/no-var-requires': 0
   },
   settings: {
     //解决路径引用ts文件报错的问题

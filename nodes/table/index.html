@@ -1,0 +1,135 @@
+<script type="text/javascript">
+  RED.nodes.registerType('table', {
+    category: '自定义Cufoon',
+    color: '#a6bbcf',
+    defaults: {
+      cufoon_id: {
+        value: '',
+        required: true,
+        validate: RED.validators.regex(/^[A-Z][a-zA-Z0-9]*$/)
+      },
+      cufoon_parent: { value: '' },
+      cufoon_default_content: { value: '' },
+      cufoon_columns: { value: [], required: true },
+      cufoon_data: { value: '', required: true },
+      cufoon_loading: { value: '' },
+      cufoon_stripe: { value: false },
+      cufoon_pagination: { value: {} },
+      cufoon_actions: { value: [] }
+    },
+    inputs: 1,
+    outputs: 1,
+    label: function () {
+      return this.cufoon_id || 'table';
+    },
+    oneditprepare: function () {
+      $('#node-input-cufoon_columns').typedInput({
+        type: 'json',
+        types: ['json']
+      });
+      $('#node-input-cufoon_actions').typedInput({
+        type: 'json',
+        types: ['json']
+      });
+      $('#node-input-cufoon_pagination').typedInput({
+        type: 'json',
+        types: ['json']
+      });
+      $('#node-input-cufoon_actions').typedInput({
+        type: 'json',
+        types: ['json']
+      });
+      $('#node-input-cufoon_stripe').typedInput({
+        default: 'bool'
+      });
+    }
+  });
+</script>
+
+<script type="text/html" data-template-name="table">
+  <div class="form-row">
+    <label for="node-input-cufoon_id"><i class="fa fa-tag"></i>唯一id</label>
+    <input
+      type="text"
+      id="node-input-cufoon_id"
+      placeholder="只能为字母和数字且首字母大写"
+    />
+  </div>
+  <div class="form-row">
+    <label for="node-input-cufoon_parent"
+      ><i class="fa fa-tag"></i>上级唯一id</label
+    >
+    <input
+      type="text"
+      id="node-input-cufoon_parent"
+      placeholder="未指定即为前一个结点的上级id"
+    />
+  </div>
+  <div class="form-row">
+    <label for="node-input-cufoon_default_content"
+      ><i class="fa fa-tag"></i>默认内容</label
+    >
+    <input type="text" id="node-input-cufoon_default_content" placeholder="" />
+  </div>
+  <div class="form-row">
+    <label for="node-input-cufoon_columns"
+      ><i class="fa fa-tag"></i>表格列信息</label
+    >
+    <input type="text" id="node-input-cufoon_columns" placeholder="[]" />
+  </div>
+  <div class="form-row">
+    <label for="node-input-cufoon_data"
+      ><i class="fa fa-tag"></i>表格数据</label
+    >
+    <input
+      type="text"
+      id="node-input-cufoon_data"
+      placeholder="root"
+      value="root"
+    />
+  </div>
+  <div class="form-row">
+    <label for="node-input-cufoon_loading"
+      ><i class="fa fa-tag"></i>表格加载动画监控变量</label
+    >
+    <input
+      type="text"
+      id="node-input-cufoon_loading"
+      placeholder="[]"
+      value="[]"
+    />
+  </div>
+  <div class="form-row">
+    <label for="node-input-cufoon_stripe"
+      ><i class="fa fa-tag"></i>是否显示斑马纹</label
+    >
+    <input
+      type="text"
+      id="node-input-cufoon_stripe"
+      placeholder="[]"
+      value="[]"
+    />
+  </div>
+  <div class="form-row">
+    <label for="node-input-cufoon_pagination"
+      ><i class="fa fa-tag"></i>分页相关设置</label
+    >
+    <input
+      type="text"
+      id="node-input-cufoon_pagination"
+      placeholder="[]"
+      value="{}"
+    />
+  </div>
+  <div class="form-row">
+    <label for="node-input-cufoon_actions"
+      ><i class="fa fa-tag"></i>数据相关操作</label
+    >
+    <input
+      type="text"
+      id="node-input-cufoon_actions"
+      placeholder="[]"
+      value="{}"
+    />
+  </div>
+</script>

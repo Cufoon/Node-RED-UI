@@ -241,7 +241,6 @@ export const mockElement = (): [
       data: 'deviceList',
       loading: 'loading',
       stripe: 'true',
-      // pagePosition: `'tr'`,
       pagination: {
         showTotal: 'true',
         sizeCanChange: 'true',
@@ -331,7 +330,7 @@ export const mockElement = (): [
     id: 'Slider1',
     name: 'slider',
     path: '',
-    style: `{width: '200px'}`,
+    style: `{width: '300px'}`,
     option: {
       label: '风扇转速',
       min: 0,
