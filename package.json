@@ -42,6 +42,7 @@
       "layout-header": "nodes/layoutHeader/index.js",
       "layout-Sider": "nodes/layoutSider/index.js",
       "layout-Footer": "nodes/layoutFooter/index.js",
+      "layout-content": "nodes/layoutContent/index.js",
       "menu": "nodes/menu/index.js",
       "outlet": "nodes/outlet/index.js",
       "state": "nodes/state/index.js",
