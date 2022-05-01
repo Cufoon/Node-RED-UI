@@ -6,6 +6,7 @@ const renderButton = ({ element, children }) => {
     return [
         `
     <Button
+      type='primary'
     ${(0, util_1.generateStyleAndClass)(element)}
     ${(0, util_1.expandOptions)(element.option, ['onClick'])}
     >

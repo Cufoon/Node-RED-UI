@@ -6,7 +6,7 @@ const renderTable = ({ element }) => {
     var _a, _b, _c, _d;
     let actions = '';
     (_b = (_a = element.option) === null || _a === void 0 ? void 0 : _a.columnsAction) === null || _b === void 0 ? void 0 : _b.map((item) => {
-        actions += `<Button onClick={()=>{ ${item.handler}(item) }}>${item.text}</Button>`;
+        actions += `<Button type='text' onClick={()=>{ ${item.handler}(item) }}>${item.text}</Button>`;
     });
     if (actions !== '') {
         actions = `{title:'操作', render: (...args)=>{

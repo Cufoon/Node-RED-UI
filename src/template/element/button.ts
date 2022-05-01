@@ -9,6 +9,7 @@ export const renderButton: RenderFunc = ({ element, children }) => {
   return [
     `
     <Button
+      type='primary'
     ${generateStyleAndClass(element)}
     ${expandOptions(element.option, ['onClick'])}
     >

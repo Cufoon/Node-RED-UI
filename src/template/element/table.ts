@@ -8,7 +8,7 @@ import {
 export const renderTable: RenderFunc = ({ element }) => {
   let actions = '';
   element.option?.columnsAction?.map((item: { handler: any; text: any }) => {
-    actions += `<Button onClick={()=>{ ${item.handler}(item) }}>${item.text}</Button>`;
+    actions += `<Button type='text' onClick={()=>{ ${item.handler}(item) }}>${item.text}</Button>`;
   });
 
   if (actions !== '') {

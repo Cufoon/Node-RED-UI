@@ -5,7 +5,7 @@ module.exports = function (RED) {
     var node = this;
     node.on('input', function (msg) {
       msg.payload = RED.settings;
-      msg.payload = name;
+      msg.payload = 'root';
       msg.cufoon = {
         ...msg.cufoon,
         site: {

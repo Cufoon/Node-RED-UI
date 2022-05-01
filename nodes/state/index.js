@@ -16,7 +16,7 @@ module.exports = function (RED) {
     node.on('input', function (msg) {
       let parent1 = parent;
       if (parent !== '') {
-        msg.payload = id;
+        msg.payload = parent;
       } else {
         parent1 = msg.payload;
       }

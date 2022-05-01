@@ -1002,26 +1002,6 @@ const mockElement = () => {
     elementsMap.set('AppLayout', ['AppSider', 'AppContent']);
     elementsMap.set('AppSider', ['AppSiderMenu']);
     elementsMap.set('AppContent', ['AppContentOutlet']);
-    elementsMap.set('PageElementC', ['State1']);
-    elementsMap.set('State1', ['Card5']);
-    elementsMap.set('Card5', ['Row3', 'Table2', 'Modal1']);
-    elementsMap.set('Modal1', ['Card6', 'Card7']);
-    elementsMap.set('Card6', [
-        'Switch1',
-        'Slider1',
-        'InputNumber5',
-        'InputNumber1',
-        'InputNumber2'
-    ]);
-    elementsMap.set('Card7', [
-        'Switch2',
-        'Slider2',
-        'InputNumber6',
-        'InputNumber3',
-        'InputNumber4'
-    ]);
-    elementsMap.set('Row3', ['Col4']);
-    elementsMap.set('Col4', ['Button2']);
     elementsMap.set('PageElementA', ['Grid1']);
     elementsMap.set('Grid1', ['Row1']);
     elementsMap.set('Row1', ['Col1', 'Col2', 'Col3']);
@@ -1041,6 +1021,26 @@ const mockElement = () => {
     elementsMap.set('State6', ['Select1']);
     elementsMap.set('State7', ['DatePicker1']);
     elementsMap.set('State8', ['Button1']);
+    elementsMap.set('PageElementC', ['State1']);
+    elementsMap.set('State1', ['Card5']);
+    elementsMap.set('Card5', ['Row3', 'Table2', 'Modal1']);
+    elementsMap.set('Row3', ['Col4']);
+    elementsMap.set('Col4', ['Button2']);
+    elementsMap.set('Modal1', ['Card6', 'Card7']);
+    elementsMap.set('Card6', [
+        'Switch1',
+        'Slider1',
+        'InputNumber5',
+        'InputNumber1',
+        'InputNumber2'
+    ]);
+    elementsMap.set('Card7', [
+        'Switch2',
+        'Slider2',
+        'InputNumber6',
+        'InputNumber3',
+        'InputNumber4'
+    ]);
     return [elements, elementsMap];
 };
 exports.mockElement = mockElement;
