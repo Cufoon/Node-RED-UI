@@ -58,7 +58,10 @@
       "chart-line": "nodes/chartLine/index.js",
       "grid": "nodes/grid/index.js",
       "select": "nodes/select/index.js",
-      "date-picker": "nodes/datePicker/index.js"
+      "date-picker": "nodes/datePicker/index.js",
+      "route": "nodes/route/index.js",
+      "route-root": "nodes/routeRoot/index.js",
+      "menu-item": "nodes/menuItem/index.js"
     }
   }
 }

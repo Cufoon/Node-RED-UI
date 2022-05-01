@@ -7,8 +7,8 @@ import { generateSnowpackConfig } from '$config/snowpack';
 import { generateFile } from '$convert';
 import { createProject } from '$scaffold';
 // import { mockElement } from '$test/element';
-import { mockRoute } from '$test/route';
-import { yyy } from '$test/xx';
+// import { mockRoute } from '$test/route';
+import { yyy, uu1, uu2 } from '$test/xx';
 import { yy2 } from '$test/yy';
 
 console.log(generateSnowpackConfig());
@@ -31,14 +31,14 @@ const compile = async () => {
   if (!fs.existsSync(testProjectSourcePath)) {
     fs.mkdirSync(testProjectSourcePath, { recursive: true });
   }
-  // const [, elementsMap] = mockElement();
-  const [routes, routesMap] = mockRoute();
+  // const [elements, elementsMap] = mockElement();
+  // const [routes, routesMap] = mockRoute();
   if (
     !generateFile({
       elements: yyy as any,
       elementsMap: yy2 as any,
-      routes,
-      routesMap
+      routes: uu1 as any,
+      routesMap: uu2 as any
     })
   ) {
     return;

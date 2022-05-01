@@ -1,0 +1,29 @@
+<script type="text/javascript">
+  RED.nodes.registerType('route-root', {
+    category: '自定义Cufoon',
+    color: '#a6bbcf',
+    defaults: {
+      cufoon_path: { value: '', required: true },
+      cufoon_page_element: { value: '', required: true }
+    },
+    inputs: 1,
+    outputs: 1,
+    // icon: 'file.png',
+    label: function () {
+      return this.cufoon_id || 'route-root';
+    }
+  });
+</script>
+
+<script type="text/html" data-template-name="route-root">
+  <div class="form-row">
+    <label for="node-input-cufoon_path"><i class="fa fa-tag"></i>路径</label>
+    <input type="text" id="node-input-cufoon_path" placeholder="" />
+  </div>
+  <div class="form-row">
+    <label for="node-input-cufoon_page_element"
+      ><i class="fa fa-tag"></i>对应页面id</label
+    >
+    <input type="text" id="node-input-cufoon_page_element" placeholder="" />
+  </div>
+</script>

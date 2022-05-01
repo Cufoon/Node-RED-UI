@@ -1,0 +1,1 @@
+[{"name":"实时数据","key":"menu-active-data","path":"pageA","icon":"IconStar"},{"name":"历史数据","key":"menu-fresh-manage-signup","path":"pageB","icon":"IconStar"},{"name":"设备管理","key":"menu-fresh-manage-interview","path":"pageC","icon":"IconStar"}]

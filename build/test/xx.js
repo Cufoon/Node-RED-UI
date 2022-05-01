@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.yyy = void 0;
+exports.uu3 = exports.uu2 = exports.uu1 = exports.uu1origin = exports.yyy = void 0;
 const origin = {
     root: { id: 'root', name: 'root', path: 'root' },
     AppElement: {
@@ -651,3 +651,25 @@ Object.keys(origin).map((item) => {
     xxxxxxx.set(item, origin[item]);
 });
 exports.yyy = xxxxxxx;
+exports.uu1origin = {
+    root: { path: '/', element: 'AppElement' },
+    Page1: { path: '/active-data', element: 'PageElementA' },
+    Page2: { path: '/history', element: 'PageElementB' },
+    Page3: { path: '/manage', element: 'PageElementC' }
+};
+const vv1 = new Map();
+Object.keys(exports.uu1origin).map((item) => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    vv1.set(item, exports.uu1origin[item]);
+});
+exports.uu1 = vv1;
+const uu2origin = { root: ['Page1', 'Page2', 'Page3'] };
+const vv2 = new Map();
+Object.keys(uu2origin).map((item) => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    vv2.set(item, uu2origin[item]);
+});
+exports.uu2 = vv2;
+exports.uu3 = JSON.parse('[{"name":"实时数据","key":"menu-active-data","path":"active-data","icon":"IconStar"},{"name":"历史数据","key":"menu-fresh-manage-signup","path":"history","icon":"IconStar"},{"name":"设备管理","key":"menu-fresh-manage-interview","path":"manage","icon":"IconStar"}]');

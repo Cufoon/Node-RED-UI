@@ -1,6 +1,8 @@
 import { messageLib } from './libs/message';
 import { utilLib } from './libs/util';
 import { requestLib } from './libs/request';
+import { generateMenuData } from './libs/menu';
+import { uu3 } from '../test/xx';
 
 const content = `
 import React, { createContext, useReducer, useContext, useEffect, useRef, useState, useCallback, useMemo } from 'react';
@@ -33,26 +35,27 @@ ${utilLib}
 ${requestLib}
 
 Cufoon.PageMenuDifferentKey = 'menu-active-data';
-Cufoon.PageMenuData = [
-  {
-    name: '实时数据',
-    key: 'menu-active-data',
-    path: 'pageA',
-    icon: <IconStar />
-  },
-  {
-    name: '历史数据',
-    key: 'menu-fresh-manage-signup',
-    path: 'pageB',
-    icon: <IconStar />
-  },
-  {
-    name: '设备管理',
-    key: 'menu-fresh-manage-interview',
-    path: 'pageC',
-    icon: <IconStar />
-  }
-];
+// Cufoon.PageMenuData = [
+//   {
+//     name: '实时数据',
+//     key: 'menu-active-data',
+//     path: 'pageA',
+//     icon: <IconStar />
+//   },
+//   {
+//     name: '历史数据',
+//     key: 'menu-fresh-manage-signup',
+//     path: 'pageB',
+//     icon: <IconStar />
+//   },
+//   {
+//     name: '设备管理',
+//     key: 'menu-fresh-manage-interview',
+//     path: 'pageC',
+//     icon: <IconStar />
+//   }
+// ];
+Cufoon.PageMenuData = ${generateMenuData(uu3)}
 `;
 
 export const generateImportation = () => content;

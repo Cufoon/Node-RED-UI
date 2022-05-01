@@ -1,0 +1,51 @@
+<script type="text/javascript">
+  RED.nodes.registerType('route', {
+    category: '自定义Cufoon',
+    color: '#a6bbcf',
+    defaults: {
+      cufoon_id: {
+        value: '',
+        required: true,
+        validate: RED.validators.regex(/^[A-Z][a-zA-Z0-9]*$/)
+      },
+      cufoon_parent: { value: 'root' },
+      cufoon_path: { value: '', required: true },
+      cufoon_page_element: { value: '', required: true }
+    },
+    inputs: 1,
+    outputs: 1,
+    // icon: 'file.png',
+    label: function () {
+      return this.cufoon_id || 'route';
+    }
+  });
+</script>
+
+<script type="text/html" data-template-name="route">
+  <div class="form-row">
+    <label for="node-input-cufoon_id"
+      ><i class="fa fa-tag"></i>路径项唯一id</label
+    >
+    <input
+      type="text"
+      id="node-input-cufoon_id"
+      placeholder="只能为字母和数字且首字母大写"
+    />
+  </div>
+  <div class="form-row">
+    <label for="node-input-cufoon_parent"
+      ><i class="fa fa-tag"></i>上级路径项唯一id</label
+    >
+    <input type="text" id="node-input-cufoon_parent" placeholder="" />
+  </div>
+  <div class="form-row">
+    <label for="node-input-cufoon_path"><i class="fa fa-tag"></i>路径</label>
+    <input type="text" id="node-input-cufoon_path" placeholder="" />
+  </div>
+  <div class="form-row">
+    <label for="node-input-cufoon_page_element"
+      ><i class="fa fa-tag"></i>对应页面id</label
+    >
+    <input type="text" id="node-input-cufoon_page_element" placeholder="" />
+  </div>
+</script>

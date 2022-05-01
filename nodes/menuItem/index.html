@@ -1,0 +1,44 @@
+<script type="text/javascript">
+  RED.nodes.registerType('menu-item', {
+    category: '自定义Cufoon',
+    color: '#a6bbcf',
+    defaults: {
+      cufoon_id: {
+        value: '',
+        required: true,
+        validate: RED.validators.regex(/^[A-Z][a-zA-Z0-9]*$/)
+      },
+      cufoon_menu: { value: '[]' }
+    },
+    inputs: 1,
+    outputs: 1,
+    label: function () {
+      return this.cufoon_id || 'menu-item';
+    },
+    oneditprepare: function () {
+      $('#node-input-cufoon_menu').typedInput({
+        type: 'json',
+        types: ['json']
+      });
+    }
+  });
+</script>
+
+<script type="text/html" data-template-name="menu-item">
+  <div class="form-row">
+    <label for="node-input-cufoon_id"
+      ><i class="fa fa-tag"></i>路径项唯一id</label
+    >
+    <input
+      type="text"
+      id="node-input-cufoon_id"
+      placeholder="只能为字母和数字且首字母大写"
+    />
+  </div>
+  <div class="form-row">
+    <label for="node-input-cufoon_menu"
+      ><i class="fa fa-tag"></i>菜单项配置</label
+    >
+    <input type="text" id="node-input-cufoon_menu" placeholder="" />
+  </div>
+</script>

@@ -91,7 +91,7 @@ export const renderMenu: RenderFunc = () => {
 
       return inited ? (
         <Menu
-          theme='dark'
+          theme='light'
           mode='vertical'
           levelIndent={12}
           selectedKeys={selectedKeys}
