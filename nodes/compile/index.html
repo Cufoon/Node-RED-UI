@@ -1,0 +1,16 @@
+<script type="text/javascript">
+  RED.nodes.registerType('compile', {
+    category: '自定义Cufoon',
+    color: '#a6bbcf',
+    defaults: {},
+    inputs: 1,
+    outputs: 1,
+    label: function () {
+      return this.cufoon_id || 'compile';
+    }
+  });
+</script>
+
+<script type="text/html" data-template-name="compile">
+  <div class="form-row">触发编译的结点</div>
+</script>

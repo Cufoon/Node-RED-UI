@@ -2,9 +2,10 @@ import { messageLib } from './libs/message';
 import { utilLib } from './libs/util';
 import { requestLib } from './libs/request';
 import { generateMenuData } from './libs/menu';
-import { uu3 } from '../test/xx';
+// import { uu3 } from '../test/xx';
 
-const content = `
+export const generateImportation = (menuData: any[]) => {
+  return `
 import React, { createContext, useReducer, useContext, useEffect, useRef, useState, useCallback, useMemo } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Route, Routes, Outlet, useNavigate, useLocation } from 'react-router-dom';
@@ -55,7 +56,6 @@ Cufoon.PageMenuDifferentKey = 'menu-active-data';
 //     icon: <IconStar />
 //   }
 // ];
-Cufoon.PageMenuData = ${generateMenuData(uu3)}
+Cufoon.PageMenuData = ${generateMenuData(menuData)}
 `;
-
-export const generateImportation = () => content;
+};

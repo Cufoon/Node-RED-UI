@@ -1,10 +1,13 @@
-import path from 'node:path';
+// import path from 'node:path';
 import type { SnowpackUserConfig } from 'snowpack';
 import proxy from 'http2-proxy';
 
-export const generateSnowpackConfig = (): SnowpackUserConfig => {
+export const generateSnowpackConfig = (
+  sourcePath: string
+): SnowpackUserConfig => {
   return {
-    root: path.resolve(__dirname, '../..', 'test'),
+    // root: path.resolve(__dirname, '../..', 'test'),
+    root: sourcePath,
     mount: {
       public: '/',
       src: '/dist'

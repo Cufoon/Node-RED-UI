@@ -5,8 +5,9 @@ const message_1 = require("./libs/message");
 const util_1 = require("./libs/util");
 const request_1 = require("./libs/request");
 const menu_1 = require("./libs/menu");
-const xx_1 = require("../test/xx");
-const content = `
+// import { uu3 } from '../test/xx';
+const generateImportation = (menuData) => {
+    return `
 import React, { createContext, useReducer, useContext, useEffect, useRef, useState, useCallback, useMemo } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Route, Routes, Outlet, useNavigate, useLocation } from 'react-router-dom';
@@ -57,7 +58,7 @@ Cufoon.PageMenuDifferentKey = 'menu-active-data';
 //     icon: <IconStar />
 //   }
 // ];
-Cufoon.PageMenuData = ${(0, menu_1.generateMenuData)(xx_1.uu3)}
+Cufoon.PageMenuData = ${(0, menu_1.generateMenuData)(menuData)}
 `;
-const generateImportation = () => content;
+};
 exports.generateImportation = generateImportation;

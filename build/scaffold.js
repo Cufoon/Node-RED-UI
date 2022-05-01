@@ -5,12 +5,12 @@ const tslib_1 = require("tslib");
 const project_1 = require("./template/project");
 const fs_extra_1 = tslib_1.__importDefault(require("fs-extra"));
 const node_path_1 = tslib_1.__importDefault(require("node:path"));
-const createProject = () => {
-    const rootPath = node_path_1.default.resolve(__dirname, '../test/public');
-    const indexHtmlPath = node_path_1.default.resolve(__dirname, '../test/public/index.html');
-    const indexCssPath = node_path_1.default.resolve(__dirname, '../test/public/index.scss');
-    const packageJSONPath = node_path_1.default.resolve(__dirname, '../test/package.json');
-    const indexHtml = (0, project_1.generateIndexHtml)('Cufoon Web');
+const createProject = (root, title) => {
+    const rootPath = node_path_1.default.resolve(root, 'public');
+    const indexHtmlPath = node_path_1.default.resolve(root, 'public/index.html');
+    const indexCssPath = node_path_1.default.resolve(root, 'public/index.scss');
+    const packageJSONPath = node_path_1.default.resolve(root, 'package.json');
+    const indexHtml = (0, project_1.generateIndexHtml)(title || 'Cufoon Web');
     const indexCss = (0, project_1.generateIndexCss)();
     const packageJSON = (0, project_1.generatePackageJSON)();
     if (!fs_extra_1.default.existsSync(rootPath)) {

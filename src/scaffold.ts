@@ -6,12 +6,12 @@ import {
 import fs from 'fs-extra';
 import path from 'node:path';
 
-export const createProject = () => {
-  const rootPath = path.resolve(__dirname, '../test/public');
-  const indexHtmlPath = path.resolve(__dirname, '../test/public/index.html');
-  const indexCssPath = path.resolve(__dirname, '../test/public/index.scss');
-  const packageJSONPath = path.resolve(__dirname, '../test/package.json');
-  const indexHtml = generateIndexHtml('Cufoon Web');
+export const createProject = (root: string, title: string) => {
+  const rootPath = path.resolve(root, 'public');
+  const indexHtmlPath = path.resolve(root, 'public/index.html');
+  const indexCssPath = path.resolve(root, 'public/index.scss');
+  const packageJSONPath = path.resolve(root, 'package.json');
+  const indexHtml = generateIndexHtml(title || 'Cufoon Web');
   const indexCss = generateIndexCss();
   const packageJSON = generatePackageJSON();
 

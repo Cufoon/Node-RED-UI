@@ -4,9 +4,10 @@ module.exports = function (RED) {
     const menu = config.cufoon_menu;
     var node = this;
     node.on('input', function (msg) {
+      // node.send(menu);
       msg.cufoon = {
         ...msg.cufoon,
-        menu: menu
+        menu: JSON.parse(menu)
       };
       node.send(msg);
     });

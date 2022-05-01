@@ -1,23 +1,17 @@
 import path from 'node:path';
 import fs from 'fs-extra';
 
-export const appendToFile = (content: string) => {
+export const appendToFile = (rootPath: string, content: string) => {
   try {
-    fs.appendFileSync(
-      path.resolve(__dirname, '../../test/src/index.jsx'),
-      content
-    );
+    fs.appendFileSync(path.resolve(rootPath, 'src/index.jsx'), content);
   } catch (e: unknown) {
     console.log(e);
   }
 };
 
-export const writeToFile = (content: string) => {
+export const writeToFile = (rootPath: string, content: string) => {
   try {
-    fs.writeFileSync(
-      path.resolve(__dirname, '../../test/src/index.jsx'),
-      content
-    );
+    fs.writeFileSync(path.resolve(rootPath, 'src/index.jsx'), content);
   } catch (e: unknown) {
     console.log(e);
   }

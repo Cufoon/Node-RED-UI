@@ -10,6 +10,8 @@ const generatePackageJSON = (name = 'ui') => {
         author: 'Cufoon',
         license: 'MIT',
         dependencies: {
+            '@snowpack/plugin-sass': '^1.4.0',
+            '@snowpack/plugin-react-refresh': '^2.5.0',
             react: '^18.0.0',
             'react-dom': '^18.0.0',
             'react-router-dom': '^6.3.0',
