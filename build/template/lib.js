@@ -6,7 +6,7 @@ const util_1 = require("./libs/util");
 const request_1 = require("./libs/request");
 const menu_1 = require("./libs/menu");
 // import { uu3 } from '../test/xx';
-const generateImportation = (menuData) => {
+const generateImportation = (menuData, menuDefault, defaultPage) => {
     return `
 import React, { createContext, useReducer, useContext, useEffect, useRef, useState, useCallback, useMemo } from 'react';
 import { createRoot } from 'react-dom/client';
@@ -37,7 +37,7 @@ ${message_1.messageLib}
 ${util_1.utilLib}
 ${request_1.requestLib}
 
-Cufoon.PageMenuDifferentKey = 'menu-active-data';
+// Cufoon.PageMenuDifferentKey = 'menu-active-data';
 // Cufoon.PageMenuData = [
 //   {
 //     name: '实时数据',
@@ -58,6 +58,8 @@ Cufoon.PageMenuDifferentKey = 'menu-active-data';
 //     icon: <IconStar />
 //   }
 // ];
+Cufoon.DefaultPage = ${JSON.stringify(defaultPage)} || '/';
+Cufoon.PageMenuDifferentKey = ${JSON.stringify(menuDefault)};
 Cufoon.PageMenuData = ${(0, menu_1.generateMenuData)(menuData)}
 `;
 };

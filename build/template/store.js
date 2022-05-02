@@ -2,8 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateStore = void 0;
 const generateStore = (v) => {
+    let init = '';
+    Object.keys(v).map((item) => {
+        init += `${JSON.stringify(item)}: ${v[item]},`;
+    });
     return `
-const initialState = ${JSON.stringify(v)};
+const initialState = {${init}};
 
 const notRealized = (action) => {
   console.log('your action is', action);

@@ -19,7 +19,7 @@ console.log(generateSnowpackConfig(__dirname));
 export const compile = async (sourceData: any, rootPath: string) => {
   const projectPath = rootPath;
   const projectSourcePath = path.resolve(projectPath, 'src');
-  if (!createProject(rootPath, sourceData.cufoon?.title)) {
+  if (!createProject(rootPath, sourceData.site?.name)) {
     return;
   }
   try {
@@ -41,7 +41,9 @@ export const compile = async (sourceData: any, rootPath: string) => {
       elementsMap: sourceData.elementsMap,
       routes: sourceData.routes,
       routesMap: sourceData.routesMap,
-      menuData: sourceData.menu
+      menuData: sourceData.menu,
+      menuDefault: sourceData.menuDefault,
+      pageDefault: sourceData.pageDefault
     })
   ) {
     return;

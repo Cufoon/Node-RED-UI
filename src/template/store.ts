@@ -1,6 +1,10 @@
-export const generateStore = (v: object) => {
+export const generateStore = (v: { [index: string]: any }) => {
+  let init = '';
+  Object.keys(v).map((item) => {
+    init += `${JSON.stringify(item)}: ${v[item]},`;
+  });
   return `
-const initialState = ${JSON.stringify(v)};
+const initialState = {${init}};
 
 const notRealized = (action) => {
   console.log('your action is', action);

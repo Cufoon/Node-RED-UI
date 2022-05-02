@@ -16,9 +16,15 @@ export const startServer = async (rootPath: string) => {
     // configFile: false,
     root: path.resolve(rootPath, 'build'),
     server: {
-      port: 1337,
+      host: '0.0.0.0',
+      port: 37702,
+      hmr: {
+        path: 'wss',
+        port: 443,
+        clientPort: 443
+      },
       proxy: {
-        '/api/v1': 'http://localhost:8000'
+        '/api/v1': 'http://localhost:37701'
       }
     }
   });

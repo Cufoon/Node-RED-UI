@@ -8,7 +8,9 @@
         required: true,
         validate: RED.validators.regex(/^[A-Z][a-zA-Z0-9]*$/)
       },
-      cufoon_menu: { value: '[]' }
+      cufoon_menu: { value: '[]' },
+      cufoon_default_menu: { value: '' },
+      cufoon_default_page: { value: '' }
     },
     inputs: 1,
     outputs: 1,
@@ -34,6 +36,18 @@
       id="node-input-cufoon_id"
       placeholder="只能为字母和数字且首字母大写"
     />
+  </div>
+  <div class="form-row">
+    <label for="node-input-cufoon_default_page"
+      ><i class="fa fa-tag"></i>默认页面路径</label
+    >
+    <input type="text" id="node-input-cufoon_default_page" placeholder="" />
+  </div>
+  <div class="form-row">
+    <label for="node-input-cufoon_default_menu"
+      ><i class="fa fa-tag"></i>默认菜单项</label
+    >
+    <input type="text" id="node-input-cufoon_default_menu" placeholder="" />
   </div>
   <div class="form-row">
     <label for="node-input-cufoon_menu"

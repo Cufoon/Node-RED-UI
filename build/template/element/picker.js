@@ -13,7 +13,7 @@ const renderRangePicker = ({ element }) => {
         ${(0, util_1.generateStyleAndClass)(element)}
         showTime={{ defaultValue: ['00:00:00', '00:00:00'], format: 'HH:mm:ss' }}
         format='YYYY-MM-DD HH:mm:ss'
-        ${(0, util_1.expandOptions)(element.option, ['onChange', 'onSelect', 'onOk'])}
+        ${(0, util_1.expandOptions)(element.option, ['onChange', 'onSelect', 'onOk', 'value'])}
       />
     </Space>
   `;

@@ -21,7 +21,7 @@ const compile = (sourceData, rootPath) => tslib_1.__awaiter(void 0, void 0, void
     var _a;
     const projectPath = rootPath;
     const projectSourcePath = node_path_1.default.resolve(projectPath, 'src');
-    if (!(0, _scaffold_1.createProject)(rootPath, (_a = sourceData.cufoon) === null || _a === void 0 ? void 0 : _a.title)) {
+    if (!(0, _scaffold_1.createProject)(rootPath, (_a = sourceData.site) === null || _a === void 0 ? void 0 : _a.name)) {
         return;
     }
     try {
@@ -43,7 +43,9 @@ const compile = (sourceData, rootPath) => tslib_1.__awaiter(void 0, void 0, void
         elementsMap: sourceData.elementsMap,
         routes: sourceData.routes,
         routesMap: sourceData.routesMap,
-        menuData: sourceData.menu
+        menuData: sourceData.menu,
+        menuDefault: sourceData.menuDefault,
+        pageDefault: sourceData.pageDefault
     })) {
         return;
     }

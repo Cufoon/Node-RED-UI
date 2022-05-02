@@ -16,6 +16,11 @@ export const renderMenu: RenderFunc = () => {
 
       useEffect(() => {
         console.log(location.pathname);
+        if (location.pathname === '/') {
+          if(Cufoon.DefaultPage !== '/') {
+            navigate(Cufoon.DefaultPage);
+          }
+        }
         if (!inited) {
           const routes = Utils.getRouteList(location.pathname);
           if (routes.length === 0) {
@@ -92,13 +97,13 @@ export const renderMenu: RenderFunc = () => {
       return inited ? (
         <Menu
           theme='light'
-          mode='vertical'
+          mode='horizontal'
           levelIndent={12}
           selectedKeys={selectedKeys}
           openKeys={openKeys}
           onClickSubMenu={onOpenChange}
           onClickMenuItem={onSelect}
-          style={{ userSelect: 'none' }}
+          style={{ userSelect: 'none', marginBottom: '16px' }}
         >
           {MenuItems}
         </Menu>

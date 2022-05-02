@@ -18,7 +18,7 @@ const Utils = {
   },
   getRouteList: (path) => {
     if (path === '/' || path === '//') {
-      return ['person-info'];
+      return ['/'];
     }
     if (path[0] === '/') {
       path = path.substring(1);

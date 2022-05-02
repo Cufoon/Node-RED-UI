@@ -11,7 +11,8 @@ const generateSnowpackConfig = (sourcePath) => {
             public: '/',
             src: '/dist'
         },
-        plugins: ['@snowpack/plugin-sass', '@snowpack/plugin-webpack', '@snowpack/plugin-react-refresh'],
+        // plugins: ['@snowpack/plugin-sass', '@snowpack/plugin-webpack', '@snowpack/plugin-react-refresh'],
+        plugins: ['@snowpack/plugin-sass', '@snowpack/plugin-react-refresh'],
         routes: [
             {
                 match: 'routes',

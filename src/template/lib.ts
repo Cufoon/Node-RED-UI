@@ -4,7 +4,11 @@ import { requestLib } from './libs/request';
 import { generateMenuData } from './libs/menu';
 // import { uu3 } from '../test/xx';
 
-export const generateImportation = (menuData: any[]) => {
+export const generateImportation = (
+  menuData: any[],
+  menuDefault: string,
+  defaultPage: string
+) => {
   return `
 import React, { createContext, useReducer, useContext, useEffect, useRef, useState, useCallback, useMemo } from 'react';
 import { createRoot } from 'react-dom/client';
@@ -35,7 +39,7 @@ ${messageLib}
 ${utilLib}
 ${requestLib}
 
-Cufoon.PageMenuDifferentKey = 'menu-active-data';
+// Cufoon.PageMenuDifferentKey = 'menu-active-data';
 // Cufoon.PageMenuData = [
 //   {
 //     name: '实时数据',
@@ -56,6 +60,8 @@ Cufoon.PageMenuDifferentKey = 'menu-active-data';
 //     icon: <IconStar />
 //   }
 // ];
+Cufoon.DefaultPage = ${JSON.stringify(defaultPage)} || '/';
+Cufoon.PageMenuDifferentKey = ${JSON.stringify(menuDefault)};
 Cufoon.PageMenuData = ${generateMenuData(menuData)}
 `;
 };

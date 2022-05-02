@@ -12,16 +12,26 @@ export interface GenerateData {
   routes: Map<string, RouteItem>;
   routesMap: Map<string, string[]>;
   menuData: any[];
+  menuDefault: string;
+  pageDefault: string;
 }
 
 type Func = (v1: string, v2: GenerateData) => boolean;
 
 export const generateFile: Func = (
   rootPath: string,
-  { elements, elementsMap, routes, routesMap, menuData }
+  {
+    elements,
+    elementsMap,
+    routes,
+    routesMap,
+    menuData,
+    menuDefault,
+    pageDefault
+  }
 ) => {
   try {
-    const importation = generateImportation(menuData);
+    const importation = generateImportation(menuData, menuDefault, pageDefault);
     const [generatedBody, storeDefault] = generateBody(
       elementsMap,
       elements,
@@ -31,11 +41,11 @@ export const generateFile: Func = (
     const appRender = generateAppRender('app');
     const generatedRoutes = generateRoute(routesMap, routes, 'root');
 
-    writeToFile(rootPath,importation);
-    appendToFile(rootPath,store);
-    appendToFile(rootPath,generatedBody);
-    appendToFile(rootPath,generatedRoutes);
-    appendToFile(rootPath,appRender);
+    writeToFile(rootPath, importation);
+    appendToFile(rootPath, store);
+    appendToFile(rootPath, generatedBody);
+    appendToFile(rootPath, generatedRoutes);
+    appendToFile(rootPath, appRender);
 
     return true;
   } catch (e) {

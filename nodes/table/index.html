@@ -10,12 +10,12 @@
       },
       cufoon_parent: { value: '' },
       cufoon_default_content: { value: '' },
-      cufoon_columns: { value: [], required: true },
+      cufoon_columns: { value: '[]', required: true },
       cufoon_data: { value: '', required: true },
       cufoon_loading: { value: '' },
       cufoon_stripe: { value: false },
-      cufoon_pagination: { value: {} },
-      cufoon_actions: { value: [] }
+      cufoon_pagination: { value: '{}' },
+      cufoon_actions: { value: '[]' }
     },
     inputs: 1,
     outputs: 1,
@@ -81,12 +81,7 @@
     <label for="node-input-cufoon_data"
       ><i class="fa fa-tag"></i>表格数据</label
     >
-    <input
-      type="text"
-      id="node-input-cufoon_data"
-      placeholder="root"
-      value="root"
-    />
+    <input type="text" id="node-input-cufoon_data" placeholder="" />
   </div>
   <div class="form-row">
     <label for="node-input-cufoon_loading"

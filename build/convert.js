@@ -7,9 +7,9 @@ const lib_1 = require("./template/lib");
 const route_1 = require("./template/route");
 const store_1 = require("./template/store");
 const file_1 = require("./util/file");
-const generateFile = (rootPath, { elements, elementsMap, routes, routesMap, menuData }) => {
+const generateFile = (rootPath, { elements, elementsMap, routes, routesMap, menuData, menuDefault, pageDefault }) => {
     try {
-        const importation = (0, lib_1.generateImportation)(menuData);
+        const importation = (0, lib_1.generateImportation)(menuData, menuDefault, pageDefault);
         const [generatedBody, storeDefault] = (0, body_1.generateBody)(elementsMap, elements, 'root');
         const store = (0, store_1.generateStore)(storeDefault);
         const appRender = (0, app_1.generateAppRender)('app');
