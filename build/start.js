@@ -19,7 +19,10 @@ const startServer = (rootPath) => tslib_1.__awaiter(void 0, void 0, void 0, func
         // configFile: false,
         root: node_path_1.default.resolve(rootPath, 'build'),
         server: {
-            port: 1337
+            port: 1337,
+            proxy: {
+                '/api/v1': 'http://localhost:8000'
+            }
         }
     });
     onlyServer = server;

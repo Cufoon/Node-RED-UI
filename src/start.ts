@@ -16,7 +16,10 @@ export const startServer = async (rootPath: string) => {
     // configFile: false,
     root: path.resolve(rootPath, 'build'),
     server: {
-      port: 1337
+      port: 1337,
+      proxy: {
+        '/api/v1': 'http://localhost:8000'
+      }
     }
   });
   onlyServer = server;
