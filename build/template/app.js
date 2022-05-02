@@ -7,9 +7,9 @@ const generateAppRender = (root) => {
   const appRoot = createRoot(appContainer);
   appRoot.render(
     <GlobalStateComponent>
-      <BrowserRouter>
+      <HashRouter>
         <RouteList />
-      </BrowserRouter>
+      </HashRouter>
     </GlobalStateComponent>
   );
   `;

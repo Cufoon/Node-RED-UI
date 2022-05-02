@@ -4,9 +4,9 @@ export const generateAppRender = (root: string) => {
   const appRoot = createRoot(appContainer);
   appRoot.render(
     <GlobalStateComponent>
-      <BrowserRouter>
+      <HashRouter>
         <RouteList />
-      </BrowserRouter>
+      </HashRouter>
     </GlobalStateComponent>
   );
   `;

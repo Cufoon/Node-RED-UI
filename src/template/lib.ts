@@ -8,7 +8,7 @@ export const generateImportation = (menuData: any[]) => {
   return `
 import React, { createContext, useReducer, useContext, useEffect, useRef, useState, useCallback, useMemo } from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter, Route, Routes, Outlet, useNavigate, useLocation } from 'react-router-dom';
+import { BrowserRouter, HashRouter, Route, Routes, Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { Card, Layout, Button, Menu, Message, Grid, Table, Select, DatePicker, Space, Modal, Switch, InputNumber, Slider } from '@arco-design/web-react';
 import { IconStar } from '@arco-design/web-react/icon';
 import umiRequest from 'umi-request';
